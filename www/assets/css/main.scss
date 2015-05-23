@@ -7,11 +7,12 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: $bg-blue;
+  background-color: $bg;
   color: white;
   text-align: center;
+  font: 100% $clarendon-wide;
+  font-weight: 700;
 
-  font: 100% $intel-regular;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.5px;
@@ -24,17 +25,17 @@ html, body {
   max-width: 1300px;
   height: 100%;
   margin: auto;
-  padding: 0 30px;
+  padding: 0 0;
   text-align: left;
   width: auto;
-  background-color: pink;
+  //background-color: pink;
 
   @media screen and (max-width: $break-iPad) {
     padding: 0 0px;
-    text-align: center;
   }
 
   @media screen and (max-width: $break-phones-470) {
     padding: 0 0;
   }
 }
+
