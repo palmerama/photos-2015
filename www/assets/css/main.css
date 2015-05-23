@@ -1,0 +1,32 @@
+@import url(fonts.css);
+html, body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #003c71;
+  color: white;
+  text-align: center;
+  font: 100% "IntelClearRegular", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.5px;
+  -webkit-tap-highlight-color: transparent; }
+
+#wrapper {
+  position: relative;
+  max-width: 1300px;
+  height: 100%;
+  margin: auto;
+  padding: 0 30px;
+  text-align: left;
+  width: auto;
+  background-color: pink; }
+  @media screen and (max-width: 768px) {
+    #wrapper {
+      padding: 0 0px;
+      text-align: center; } }
+  @media screen and (max-width: 470px) {
+    #wrapper {
+      padding: 0 0; } }
+
+/*# sourceMappingURL=main.css.map */

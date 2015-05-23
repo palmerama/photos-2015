@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|assets|images|googlecb588cecbaefdab4.html|robots\.txt)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
+
+<IfModule mod_speling.c>
+CheckSpelling Off
+</IfModule>
+
+#Gzip
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+</ifmodule>
+#End Gzip

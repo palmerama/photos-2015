@@ -1,0 +1,40 @@
+@import 'vars';
+@import 'breaks';
+@import 'fonts.css';
+
+
+html, body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $bg-blue;
+  color: white;
+  text-align: center;
+
+  font: 100% $intel-regular;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.5px;
+
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#wrapper {
+  position: relative;
+  max-width: 1300px;
+  height: 100%;
+  margin: auto;
+  padding: 0 30px;
+  text-align: left;
+  width: auto;
+  background-color: pink;
+
+  @media screen and (max-width: $break-iPad) {
+    padding: 0 0px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: $break-phones-470) {
+    padding: 0 0;
+  }
+}

@@ -1,0 +1,24 @@
+
+@font-face {
+	font-family: 'IntelClearRegular';
+	src: url('../fonts/EOT/IntelClear_WLatn_Rg.eot');
+	src: url('../fonts/EOT/IntelClear_WLatn_Rg.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/WOFF/IntelClear_WLatn_Rg.woff') format('woff'),
+	url('../fonts/TrueType/IntelClear_WLatn_Rg.ttf') format('truetype')
+}
+
+@font-face {
+	font-family: 'IntelClearLight';
+	src: url('../fonts/EOT/IntelClear_WLatn_Lt.eot');
+	src: url('../fonts/EOT/IntelClear_WLatn_Lt.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/WOFF/IntelClear_WLatn_Lt.woff') format('woff'),
+	url('../fonts/TrueType/IntelClear_WLatn_Lt.ttf') format('truetype')
+}
+
+@font-face {
+	font-family: 'IntelClearBold';
+	src: url('../fonts/EOT/IntelClear_WLatn_Bd.eot');
+	src: url('../fonts/EOT/IntelClear_WLatn_Bd.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/WOFF/IntelClear_WLatn_Bd.woff') format('woff'),
+	url('../fonts/TrueType/IntelClear_WLatn_Bd.ttf') format('truetype')
+}
