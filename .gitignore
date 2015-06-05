@@ -6,3 +6,5 @@
 */cache/!.htaccess
 
 .DS_Store
+
+/www/originals/

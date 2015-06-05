@@ -18,14 +18,15 @@ html, body {
   max-width: 1300px;
   height: 100%;
   margin: auto;
-  padding: 0 0;
+  padding: 0 0 100px;
+  box-sizing: border-box;
   text-align: left;
   width: auto; }
   @media screen and (max-width: 768px) {
     #wrapper {
-      padding: 0 0px; } }
+      padding: 0 0 80px; } }
   @media screen and (max-width: 470px) {
     #wrapper {
-      padding: 0 0; } }
+      padding: 0 0 40px; } }
 
 /*# sourceMappingURL=main.css.map */
