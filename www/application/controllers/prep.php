@@ -2,6 +2,12 @@
 
 class prep extends CI_Controller
 {
+	var $photosFolder;
+	var $original;
+	var $ratio;
+	var $photoId;
+	var $config;
+
 
 	public function __construct()
 	{
@@ -11,16 +17,20 @@ class prep extends CI_Controller
 
 	public function createAlbumFromFolder($title)
 	{
+		ini_set('max_execution_time', 0);
+		ini_set('memory_limit', '512M');
+		// echo memory_get_usage();
+
 		$albumId = $this->photos_model->createAlbum($title);
 		$this->createImages($title, $albumId);
 	}
 
 	public function createImages($title, $albumId)
 	{
-		ini_set('memory_limit', '1024M');
+		echo "<pre>";
 
 		$originalsFolder = "originals/".$title."/";
-		$photosFolder = "assets/img/photos/";
+		$this->photosFolder = "assets/img/photos/";
 
 		$filesOrig = scandir($originalsFolder);
 		$imagesOrig = array();
@@ -34,40 +44,51 @@ class prep extends CI_Controller
 		// resize and save
 		for ($i = 0; $i < count($imagesOrig); $i++)
 		{
-			$original = $originalsFolder.$imagesOrig[$i];
+			$this->original = $originalsFolder.$imagesOrig[$i];
 
 			// get ratio
-			list($imgW, $imgH) = getimagesize($original);
-			$ratio = $imgH / $imgW;
+			list($imgW, $imgH) = getimagesize($this->original);
+			$this->ratio = $imgH / $imgW;
 
 			// get id from db
-			$photoId = $this->photos_model->createPhotoInAlbum($albumId, $ratio);
+			$this->photoId = $this->photos_model->createPhotoInAlbum($albumId, $this->ratio);
 
-			$this->createScaledImage($original, $photosFolder, $photoId, 4000);
-			$this->createScaledImage($original, $photosFolder, $photoId, 3000);
-			$this->createScaledImage($original, $photosFolder, $photoId, 2000);
-			$this->createScaledImage($original, $photosFolder, $photoId, 1000);
-			$this->createScaledImage($original, $photosFolder, $photoId, 500);
-			$this->createScaledImage($original, $photosFolder, $photoId, 300);
+			echo "\n\nid: ".$this->photoId." file: ".$this->original;
+
+			$this->createScaledImage(4000);
+			$this->createScaledImage(3000);
+			$this->createScaledImage(2000);
+			$this->createScaledImage(1000);
+			$this->createScaledImage(500);
+			$this->createScaledImage(300);
 		}
+
+		echo "</pre>";
 	}
 
-	public function createScaledImage($original, $photosFolder, $photoId, $edgeLength)
+	public function createScaledImage($edgeLength)
 	{
-		ini_set('memory_limit', '1024M');
+		ini_set('memory_limit', '512M');
+
+		$config = array(
+			'image_library' => 'gd2',
+			'source_image' => $this->original,
+			'new_image'	=> $this->photosFolder.$edgeLength.'/'.$this->photoId.'.jpg',
+			'maintain_ratio' => TRUE,
+			'width' => $edgeLength,
+			'height' => $edgeLength
+		);
+
+		echo "\n\tresizing to ".$edgeLength."...";
+
 		$this->load->library('image_lib');
-
-		$config['image_library'] = 'gd2';
-		$config['source_image']	= $original;
-		$config['new_image']	= $photosFolder.$edgeLength.'/'.$photoId.'.jpg';
-		$config['maintain_ratio'] = TRUE;
-		$config['width'] = $config['height'] = $edgeLength;
-
 		$this->image_lib->initialize($config);
 
 		if ( ! $this->image_lib->resize()) echo $this->image_lib->display_errors();
+		else echo "\tsuccess!";
 
 		$this->image_lib->clear();
+		$config = null;
 	}
 
 }
