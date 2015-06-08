@@ -50,4 +50,31 @@ class photos_model extends CI_Model
 
 		return $albumsList;
 	}
+
+	public function getAlbumPhotos($title)
+	{
+		// get id
+		$q = $this->db->get_where('albums', array('title' => $title));
+		$album = $q->result();
+
+		// get photos
+		$this->db->join('photos', 'photos.id = photo_id');
+		$q1 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, "full_width" => 0));
+		$pool = $q1->result();
+
+		// get full width
+		$this->db->join('photos', 'photos.id = photo_id');
+		$q2 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, "full_width" => 1));
+		$fullWidth = $q2->result();
+
+		// mix up
+		shuffle($pool);
+		shuffle($fullWidth);
+
+		// return
+		return array(
+			"pool" => $pool,
+			"fullWidth" => $fullWidth
+		);
+	}
 }

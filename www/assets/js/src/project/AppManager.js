@@ -1,21 +1,10 @@
-define([],
-	function(){
+define(["project/ImageManager"],
+	function(ImageManager){
 
 		function AppManager()
 		{
 			console.log("AppManager initialised");
 			this.initResize();
-
-			switch (window.appInit)
-			{
-				case "main":
-					break;
-
-				case "personality":
-					break;
-			}
-
-			return( this );
 		}
 
 		var p = AppManager.prototype;
@@ -23,6 +12,8 @@ define([],
 
 		p.initResize = function()
 		{
+			this.imageManager = new ImageManager();
+
 			this.onResizeBound = this.onResize.bind(this);
 			$(window).on("resize", this.onResizeBound);
 			$(window).resize();
@@ -30,7 +21,24 @@ define([],
 
 		p.onResize = function(e)
 		{
-			//
+			$(".photo").each(this.checkImageSize.bind(this));
+			$(".row").each(this.setRowHeight.bind(this));
+		}
+
+		p.setRowHeight = function(i, domEl)
+		{
+			$domEl = $(domEl);
+
+			// get first photo
+			var $photo = $domEl.find(".photo").eq(0);
+
+			// set row height
+			$domEl.height( Math.floor($photo.innerWidth()*$photo.attr("data-ratio")) );
+		}
+
+		p.checkImageSize = function(i, domEl)
+		{
+			this.imageManager.checkImageSize($(domEl));
 		}
 
 		// Return the base class constructor.

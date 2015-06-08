@@ -46,6 +46,8 @@ $route['t/([a-zA-Z0-9-_]+)'] = 't/share/$1';
 $route[PERSONALITY_TEST_PATH] = PERSONALITY_TEST_PATH;
 $route['404_override'] = '';
 
+$route['album/([a-zA-Z0-9-_]+)'] = 'album/index/$1';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

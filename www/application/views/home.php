@@ -13,7 +13,7 @@
 <div id="nav-bar">
 	<div class="table">
 		<div class="inner">
-			<div class="title">My Holiday Snaps</div>
+			<div class="title">Some Photos I Took</div>
 		</div>
 		<div class="inner">
 			<div class="name">by ADAM PALMER</div>
