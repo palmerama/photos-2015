@@ -10,7 +10,7 @@
 		<?php
 			foreach($row as $photo) {
 		?>
-				<a href="#" class="photo" style="
+				<a href="#" class="photo best-fit" style="
 					background-image: url('<?php echo base_url("assets/img/photos/300/".$photo->photo_id.".jpg"); ?>');
 					width:<?php echo ((1/$photo->ratio)/$rowWidthTotal)*100; ?>%;
 				" data-id="<?php echo $photo->photo_id; ?>" data-ratio="<?php echo $photo->ratio; ?>"></a>

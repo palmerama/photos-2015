@@ -21,7 +21,7 @@ define(["project/ImageManager"],
 
 		p.onResize = function(e)
 		{
-			$(".photo").each(this.checkImageSize.bind(this));
+			$(".best-fit").each(this.checkImageSize.bind(this));
 			$(".row").each(this.setRowHeight.bind(this));
 		}
 

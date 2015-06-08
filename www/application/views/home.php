@@ -1,6 +1,6 @@
 
 <?php foreach($albumsList as $album) { ?>
-<a href="<?php echo base_url('album/'.$album['title']); ?>" class="album-button" style="background-image: url(<?php echo base_url('assets/img/photos/1000/'.$album['cover_id'].'.jpg'); ?>)">
+<a href="<?php echo base_url('album/'.$album['title']); ?>" class="album-button best-fit" style="background-image: url(<?php echo base_url('assets/img/photos/1000/'.$album['cover_id'].'.jpg'); ?>)"  data-id="<?php echo $album['cover_id']; ?>" data-ratio="<?php echo $album['ratio']; ?>">
 	<div class="table">
 		<div class="inner">
 			<div class="title"><?php echo $album['title']; ?></div>

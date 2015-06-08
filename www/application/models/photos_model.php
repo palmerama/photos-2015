@@ -36,14 +36,20 @@ class photos_model extends CI_Model
 
 		foreach ($albums as $album)
 		{
+			// get count of photos in album
 			$q = $this->db->get_where('album_photos', array('album_id' => $album->id));
 			$r = $q->result();
 			$total = count($r);
+
+			// get bg photo details
+			$q = $this->db->get_where('photos', array('id' => $album->cover_id));
+			$bg = $q->result();
 
 			array_push($albumsList, array(
 				'id' => $album->id,
 				'title' => $album->title,
 				'cover_id' => $album->cover_id,
+				'ratio' => $bg[0]->ratio,
 				'count' => $total
 			));
 		}
