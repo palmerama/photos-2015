@@ -21,8 +21,10 @@ define(["project/ImageManager"],
 
 		p.onResize = function(e)
 		{
-			$(".best-fit").each(this.checkImageSize.bind(this));
+			//$("#wrapper").height( window.innerHeight - $("#nav-bar").innerHeight() );
+
 			$(".row").each(this.setRowHeight.bind(this));
+			$(".best-fit").each(this.checkImageSize.bind(this));
 		}
 
 		p.setRowHeight = function(i, domEl)

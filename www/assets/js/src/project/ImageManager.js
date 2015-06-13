@@ -14,46 +14,39 @@ define([],
 			{
 				var w = $domEl.innerWidth()*window.devicePixelRatio;
 				var h = $domEl.innerHeight()*window.devicePixelRatio;
-
 				var size = this.sizeStages[0];
-
-				console.log("checking image id:", $domEl.attr("data-id"));
 
 				for (var i=0; i<this.sizeStages.length; ++i)
 				{
-					console.log("\tchecking size:", this.sizeStages[i]);
-
 					if (parseFloat($domEl.attr("data-ratio")) <= 1)
 					{
-						console.log("\t\tLANDSCAPE...");
-
 						if (w <= this.sizeStages[i])
 						{
 							size = this.sizeStages[i];
-							console.log("\t\twidth ("+ w +") >= " + this.sizeStages[i]);
+							//console.log($domEl.attr("data-id") + ":", w, "x", h, "LANDSCAPE:", this.sizeStages[i]);
 							break;
 						}
-						else console.log("\t\twidth ("+ w +") < " + this.sizeStages[i]);
 					}
 					else {
-						console.log("\t\tPORTRAIT...");
-
 						if (h <= this.sizeStages[i])
 						{
 							size = this.sizeStages[i];
-							console.log("\t\theight ("+ h +") >= " + this.sizeStages[i]);
+							//console.log($domEl.attr("data-id") + ":", w, "x", h, "PORTRAIT:", this.sizeStages[i]);
 							break;
 						}
-						else console.log("\t\theight ("+ h +") < " + this.sizeStages[i]);
 					}
 				}
 
-				console.log("\t\t\tso size should be:", size);
+				var img = new Image();
+				imgUrl = window.data.baseUrl + "assets/img/photos/" + size + "/" + $domEl.attr("data-id") + ".jpg";
+				img.onload = this.showImage($domEl, imgUrl);
+				img.src = imgUrl;
+			}
 
-				//var img = new Image();
-				//img.src = $domEl.background
-
-				$domEl.css("background-image", "url('" + window.data.baseUrl + "assets/img/photos/" + size + "/" + $domEl.attr("data-id") + ".jpg')");
+			p.showImage = function($domEl, imgUrl)
+			{
+				$domEl.css("background-image", "url('" + imgUrl + "')");
+				TweenMax.to($domEl,.5 + Math.random() *.5, {autoAlpha:1, ease:Sine.easeIn});
 			}
 
 			// Return the base class constructor.

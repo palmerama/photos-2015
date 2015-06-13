@@ -1,14 +1,6 @@
 
 <?php
-
-	//echo '<pre>';
-	//print_r($rows);
-	//echo '</pre>';
-
-	//die();
-
-
-	foreach($rows as $row) {
+	foreach($album as $row) {
 
 		$rowWidthTotal = 0;
 		foreach($row as $photo) { $rowWidthTotal += 1/$photo->ratio; };
@@ -21,15 +13,7 @@
 				<a href="#" class="photo best-fit" style="
 					background-image: url('');
 					width:<?php echo ((1/$photo->ratio)/$rowWidthTotal)*100; ?>%;
-				" data-id="<?php echo $photo->photo_id; ?>" data-ratio="<?php echo $photo->ratio; ?>">
-
-				<?php if ($admin != null) { ?>
-						<div class="table">
-							<div class="cell"><?php echo $photo->photo_id; ?></div>
-						</div>
-				<?php }; ?>
-
-				</a>
+				" data-id="<?php echo $photo->photo_id; ?>" data-ratio="<?php echo $photo->ratio; ?>"></a>
 		<?php }; ?>
 	</div>
 <?php }; ?>

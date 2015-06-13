@@ -65,22 +65,99 @@ class photos_model extends CI_Model
 
 		// get photos
 		$this->db->join('photos', 'photos.id = photo_id');
-		$q1 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, "full_width" => 0));
-		$pool = $q1->result();
+		$this->db->order_by('position', 'asc');
+		$q = $this->db->get_where('album_photos', array('album_id' => $album[0]->id));
+		$photos = $q->result();
 
-		// get full width
+		//echo '<pre>';
+		//print_r($photos);
+		//echo '<pre>';
+
+		return $photos;
+	}
+
+	public function reOrderAlbum($title)
+	{
+		// get album id
+		$q = $this->db->get_where('albums', array('title' => $title));
+		$album = $q->result();
+
+		// get full width photos
 		$this->db->join('photos', 'photos.id = photo_id');
-		$q2 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, "full_width" => 1));
-		$fullWidth = $q2->result();
+		$q1 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 1));
+		$fullWidthPhotos = $q1->result();
 
-		// mix up
-		shuffle($pool);
-		shuffle($fullWidth);
+		// get normal photos
+		$this->db->join('photos', 'photos.id = photo_id');
+		$q2 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 0));
+		$normalPhotos = $q2->result();
 
-		// return
-		return array(
-			"pool" => $pool,
-			"fullWidth" => $fullWidth
-		);
+		// randomise
+		shuffle($fullWidthPhotos);
+		shuffle($normalPhotos);
+
+		// set up
+		$photos = array();
+		$totalPhotos = count($fullWidthPhotos) + count($normalPhotos);
+
+		$normalCounter = 0;
+		$fullCounter = 0;
+		$gapCounter = 0;
+
+		// evenly space full width photos in list
+		$fullFrequency = count($normalPhotos) / count($fullWidthPhotos);
+		$fullFrequency = round($fullFrequency / 1.5) * 1.5;
+
+		echo '<pre>';
+		echo 'freq: '.$fullFrequency;
+
+		// go through photos
+		while ($fullCounter + $normalCounter < $totalPhotos)
+		{
+			$gapCounter++;
+
+			// add full width photo?
+			if ($gapCounter >= $fullFrequency)
+			{
+				$gapCounter = 0;
+
+				if ($fullCounter < count($fullWidthPhotos))
+				{
+					array_push($photos, $fullWidthPhotos[$fullCounter]);
+					$fullCounter++;
+				}
+			}
+			else {
+				// add normal photo
+				array_push($photos, $normalPhotos[$normalCounter]);
+				$normalCounter++;
+			}
+		}
+
+		echo("\n\n==============\n\n");
+		print_r($photos);
+
+		echo '</pre>';
+		// die();
+
+
+		// save positions back in order
+		$position = 0;
+
+		foreach ($photos as $photo)
+		{
+			$this->db->update('photos', array('position' => $position), array('id' => $photo->id));
+			$position++;
+		}
+	}
+
+	public function checkFullWidthPhoto()
+	{
+		if ($this->fullWidthCounter < count($this->photos['fullWidth']) && lcg_value() > .5) $this->addFullWidthPhoto();
+	}
+	public function addFullWidthPhoto()
+	{
+		array_push($this->album, array($this->photos['fullWidth'][$this->fullWidthCounter]));
+		$this->fullWidthCounter++;
 	}
 }

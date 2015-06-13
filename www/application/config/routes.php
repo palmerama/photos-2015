@@ -39,15 +39,13 @@
 */
 
 $route['default_controller'] = "home";
-$route['googlecb588cecbaefdab4.html'] = "googlecb588cecbaefdab4";
-
-$route['s/([a-zA-Z0-9-_]+)'] = 's/share/$1';
-$route['t/([a-zA-Z0-9-_]+)'] = 't/share/$1';
-$route[PERSONALITY_TEST_PATH] = PERSONALITY_TEST_PATH;
 $route['404_override'] = '';
 
-$route['album/([a-zA-Z0-9-_]+)'] = 'album/index/$1';
+// main album
+$route['album/([a-zA-Z0-9-_]+)'] = 'album/menu/$1';
 
+// main album admin
+$route['album/(:any)/admin'] = 'album/menu/$1/admin';
 
-/* End of file routes.php */
-/* Location: ./application/config/routes.php */
+// individual photo
+$route['album/(:any)/(:num)'] = 'album/photo/$1/$2';

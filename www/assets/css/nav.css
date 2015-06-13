@@ -3,10 +3,12 @@ a.album-button {
   position: relative;
   display: block;
   width: 100%;
-  height: 75%;
+  height: 65%;
   text-decoration: none;
-  background: url("../img/album/test.jpg") center center no-repeat;
+  background: url("") center center no-repeat;
   background-size: cover;
+  opacity: 0;
+  visibility: hidden;
   border-bottom: 1px solid #fcf9e8; }
   a.album-button .table {
     display: table;
@@ -58,7 +60,7 @@ a.button:hover, a.button:active {
     #nav-bar .table .inner {
       display: table-cell;
       position: relative;
-      width: 50%;
+      width: 33%;
       vertical-align: middle; }
       #nav-bar .table .inner .title {
         display: block;
@@ -66,6 +68,22 @@ a.button:hover, a.button:active {
         float: left;
         font-size: 22px;
         text-transform: uppercase; }
+      #nav-bar .table .inner .album {
+        display: block;
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        text-align: center;
+        margin: auto; }
+      #nav-bar .table .inner a.button {
+        display: block;
+        position: relative;
+        font-weight: 500;
+        font-size: 80%;
+        text-decoration: none;
+        color: #33332e; }
+        #nav-bar .table .inner a.button:hover, #nav-bar .table .inner a.button:active {
+          background: #fcf9e8; }
       #nav-bar .table .inner .name {
         display: block;
         position: relative;

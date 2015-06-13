@@ -12,68 +12,84 @@ class album extends CI_Controller
 		$this->load->model('photos_model');
 	}
 
-	public function index($title)
+
+	/*
+		MAIN ALBUM VIEW
+	*/
+	public function menu($title, $admin = null)
 	{
 		$album = $this->generateAlbum($title);
 
 		$this->load->view('includes/header');
-		$this->load->view('album', array('album' => $this->album));
+
+		$this->load->view('album', array(
+				'rows' => $album['rows'],
+				'title' => $title,
+				'admin' => $admin
+		));
+
+		$this->load->view('includes/footer');
+	}
+
+
+	/*
+		INDIVIDUAL PHOTO VIEW
+	*/
+	public function photo($title, $photoId)
+	{
+		$album = $this->generateAlbum($title);
+		$position = $this->getPositionInPhotoList($photoId);
+
+		$this->load->view('includes/header');
+
+		$this->load->view('photo', array(
+				'album' => $album['rows'],
+				'title' => $title,
+				'photoId' => $photoId,
+				'count' => $album['count'],
+				'position' => $position
+		));
+
 		$this->load->view('includes/footer');
 	}
 
 	public function generateAlbum($title)
 	{
-		$this->photos = $this->photos_model->getAlbumPhotos($title);
-		$this->album = array();
+		$photos = $this->photos_model->getAlbumPhotos($title);
 
+		$rows = array();
 		$row = array();
 		$rowCounter = 0;
 
-		$this->fullWidthCounter = 0;
-		//$this->checkFullWidthPhoto();
-
-		foreach($this->photos['pool'] as $photo)
+		foreach($photos as $photo)
 		{
 			array_push($row, $photo);
 			$rowCounter++;
 
-			// if ($rowCounter == 3 || $rowCounter == 2 && lcg_value() > .85)
-			if ($rowCounter == 2)
+			if ($rowCounter == 2 || $photo->full_width == 1)
 			{
 				// bank row
-				array_push($this->album, $row);
+				array_push($rows, $row);
 
 				// start next row
-				$rowCounter = 0;
 				$row = array();
-
-				// add full width one?
-				$this->checkFullWidthPhoto();
+				$rowCounter = 0;
 			}
 		}
 
-		while ($this->fullWidthCounter < count($this->photos['fullWidth']))
-		{
-			$this->addFullWidthPhoto();
-		}
-
-
-		/*
-		echo '<pre>';
-		print_r($this->album);
-		echo '</pre>';
-		die();
-		*/
+		return array(
+			'rows' => $rows,
+			'count' => count($photos)
+		);
 	}
 
-	public function checkFullWidthPhoto()
+	public function reOrderAlbum($title)
 	{
-		if ($this->fullWidthCounter < count($this->photos['fullWidth']) && lcg_value() > .5) $this->addFullWidthPhoto();
+		$this->photos_model->reOrderAlbum($title);
 	}
 
-	public function addFullWidthPhoto()
+	public function getPositionInPhotoList()
 	{
-		array_push($this->album, array($this->photos['fullWidth'][$this->fullWidthCounter]));
-		$this->fullWidthCounter++;
+		// hmmm
 	}
 }

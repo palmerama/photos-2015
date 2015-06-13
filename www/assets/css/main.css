@@ -18,7 +18,8 @@ html, body {
   width: auto;
   height: 100%;
   margin: auto;
-  padding: 0 0 100px;
+  padding: 0 0 50px;
+  overflow: auto;
   box-sizing: border-box;
   text-align: left; }
   @media screen and (max-width: 768px) {
@@ -43,6 +44,21 @@ html, body {
     background: url("") center center no-repeat;
     background-size: cover;
     box-sizing: border-box;
-    border: 1px solid #fcf9e8; }
+    border: 1px solid #fcf9e8;
+    opacity: 0;
+    visibility: hidden; }
+    .row .photo .table {
+      display: table;
+      position: relative;
+      width: 100%;
+      height: 100%; }
+      .row .photo .table .cell {
+        display: table-cell;
+        position: relative;
+        width: 100%;
+        vertical-align: middle;
+        text-align: center;
+        color: white;
+        font-size: 50px; }
 
 /*# sourceMappingURL=main.css.map */
