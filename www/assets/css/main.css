@@ -13,21 +13,15 @@ html, body {
   letter-spacing: -0.5px;
   -webkit-tap-highlight-color: transparent; }
 
-#wrapper {
+.wrapper {
   position: relative;
   width: auto;
-  height: 100%;
   margin: auto;
   padding: 0 0 50px;
   overflow: auto;
+  height: 100%;
   box-sizing: border-box;
   text-align: left; }
-  @media screen and (max-width: 768px) {
-    #wrapper {
-      padding: 0 0 80px; } }
-  @media screen and (max-width: 470px) {
-    #wrapper {
-      padding: 0 0 40px; } }
 
 .row {
   display: block;
@@ -60,5 +54,65 @@ html, body {
         text-align: center;
         color: white;
         font-size: 50px; }
+        .row .photo .table .cell.selected {
+          background-color: rgba(0, 0, 0, 0.65); }
+
+body.admin .wrapper {
+  height: 100%;
+  width: 70%;
+  margin: 0; }
+body.admin .row .photo {
+  border-color: #33332e; }
+body.admin .admin-bar {
+  display: block;
+  position: relative;
+  width: 30%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px 20px 50px;
+  float: right; }
+  body.admin .admin-bar a.button {
+    position: relative;
+    display: block;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding: 15px 20px 14px;
+    text-decoration: none;
+    color: #fcf9e8;
+    background-color: #33332e;
+    margin-bottom: 10px; }
+    body.admin .admin-bar a.button.save-button {
+      display: none; }
+    body.admin .admin-bar a.button:hover, body.admin .admin-bar a.button:active {
+      background-color: #FF6600;
+      color: #33332e; }
+  body.admin .admin-bar .unused-photos {
+    display: block;
+    position: relative;
+    margin-top: 40px;
+    overflow: auto; }
+    body.admin .admin-bar .unused-photos .title {
+      display: block;
+      position: relative; }
+    body.admin .admin-bar .unused-photos .photo {
+      display: block;
+      position: relative;
+      background: url("") center center no-repeat;
+      background-size: cover;
+      margin-top: 10px; }
+      body.admin .admin-bar .unused-photos .photo .table {
+        display: table;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center; }
+        body.admin .admin-bar .unused-photos .photo .table .cell {
+          display: table-cell;
+          position: relative;
+          width: 100%;
+          height: 120%;
+          vertical-align: middle;
+          font-size: 24px;
+          background-color: rgba(0, 0, 0, 0.65); }
 
 /*# sourceMappingURL=main.css.map */

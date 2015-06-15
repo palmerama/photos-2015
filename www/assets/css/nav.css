@@ -37,7 +37,7 @@ a.button:hover, a.button:active {
   background-color: #000000;
   color: white; }
 
-#nav-bar {
+.nav-bar {
   display: block;
   position: fixed;
   left: 0px;
@@ -48,7 +48,7 @@ a.button:hover, a.button:active {
   padding: 0 42px;
   background-color: #fcf9e8;
   color: #33332e; }
-  #nav-bar .table {
+  .nav-bar .table {
     display: table;
     position: relative;
     top: 0px;
@@ -57,39 +57,47 @@ a.button:hover, a.button:active {
     height: 50px;
     max-width: 1300px;
     margin: auto; }
-    #nav-bar .table .inner {
+    .nav-bar .table .inner {
       display: table-cell;
       position: relative;
       width: 33%;
       vertical-align: middle; }
-      #nav-bar .table .inner .title {
+      .nav-bar .table .inner .title {
         display: block;
         position: relative;
         float: left;
         font-size: 22px;
         text-transform: uppercase; }
-      #nav-bar .table .inner .album {
+      .nav-bar .table .inner .album {
         display: block;
         position: relative;
         font-size: 22px;
         text-transform: uppercase;
         text-align: center;
         margin: auto; }
-      #nav-bar .table .inner a.button {
+      .nav-bar .table .inner a.button {
         display: block;
         position: relative;
         font-weight: 500;
         font-size: 80%;
         text-decoration: none;
         color: #33332e; }
-        #nav-bar .table .inner a.button:hover, #nav-bar .table .inner a.button:active {
+        .nav-bar .table .inner a.button:hover, .nav-bar .table .inner a.button:active {
           background: #fcf9e8; }
-      #nav-bar .table .inner .name {
+      .nav-bar .table .inner .name {
         display: block;
         position: relative;
         float: right;
         vertical-align: top;
         font-weight: 500;
         font-size: 80%; }
+
+body.admin .nav-bar {
+  background-color: #33332e;
+  color: #fcf9e8; }
+  body.admin .nav-bar .table .inner a.button {
+    color: #fcf9e8; }
+    body.admin .nav-bar .table .inner a.button:hover, body.admin .nav-bar .table .inner a.button:active {
+      background: #33332e; }
 
 /*# sourceMappingURL=nav.css.map */

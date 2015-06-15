@@ -20,24 +20,16 @@ html, body {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-#wrapper {
+.wrapper {
   position: relative;
   width: auto;
-  height: 100%;
   margin: auto;
   padding: 0 0 $nav-bar-height;
   overflow: auto;
+  height: 100%;
 
   box-sizing: border-box;
   text-align: left;
-
-  @media screen and (max-width: $break-iPad) {
-    padding: 0 0 80px;
-  }
-
-  @media screen and (max-width: $break-phones-470) {
-    padding: 0 0 40px;
-  }
 }
 
 
@@ -80,8 +72,96 @@ html, body {
 
         color: white;
         font-size: 50px;
+
+        &.selected {
+          background-color: $photo-selected;
+        }
       }
     }
   }
 }
 
+
+body.admin {
+  .wrapper {
+    height: 100%;
+    width: 70%;
+    margin: 0;
+  }
+
+  .row {
+    .photo {
+      border-color: $black;
+    }
+  }
+
+  .admin-bar {
+    display: block;
+    position: relative;
+    width: 30%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px 20px $nav-bar-height;
+    float: right;
+
+    a.button {
+      position: relative;
+      display: block;
+      text-transform: uppercase;
+      box-sizing: border-box;
+      padding: 15px 20px 14px;
+      text-decoration: none;
+      color: $white;
+      background-color: $black;
+      margin-bottom: 10px;
+
+      &.save-button {
+        display: none;
+      }
+
+      &:hover, &:active {
+        background-color: #FF6600;
+        color: $black;
+      }
+    }
+
+    .unused-photos {
+      display: block;
+      position: relative;
+      margin-top: 40px;
+      overflow: auto;
+
+      .title {
+        display: block;
+        position: relative;
+      }
+
+      .photo {
+        display: block;
+        position: relative;
+        background: url("") center center no-repeat;
+        background-size: cover;
+        margin-top: 10px;
+
+        .table {
+          display: table;
+          position: relative;
+
+          width: 100%;
+          height: 100%;
+          text-align: center;
+
+          .cell {
+            display: table-cell;
+            position: relative;
+            width: 100%;
+            height: 120%;
+            vertical-align: middle;
+            font-size: 24px;
+            background-color: $photo-selected;
+          }
+        }
+      }
+    }
+  }
+}

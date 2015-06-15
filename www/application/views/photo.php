@@ -19,7 +19,7 @@
 <?php }; ?>
 
 
-<div id="nav-bar">
+<div class="nav-bar">
 	<div class="table">
 		<div class="inner">
 			<a href="<?php echo base_url(); ?>" class="button">< albums</a>

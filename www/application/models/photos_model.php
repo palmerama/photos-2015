@@ -37,7 +37,7 @@ class photos_model extends CI_Model
 		foreach ($albums as $album)
 		{
 			// get count of photos in album
-			$q = $this->db->get_where('album_photos', array('album_id' => $album->id));
+			$q = $this->db->get_where('album_photos', array('album_id' => $album->id, 'active' => 1));
 			$r = $q->result();
 			$total = count($r);
 
@@ -57,7 +57,7 @@ class photos_model extends CI_Model
 		return $albumsList;
 	}
 
-	public function getAlbumPhotos($title)
+	public function getAlbumPhotos($title, $active = 1)
 	{
 		// get id
 		$q = $this->db->get_where('albums', array('title' => $title));
@@ -66,7 +66,7 @@ class photos_model extends CI_Model
 		// get photos
 		$this->db->join('photos', 'photos.id = photo_id');
 		$this->db->order_by('position', 'asc');
-		$q = $this->db->get_where('album_photos', array('album_id' => $album[0]->id));
+		$q = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'active' => $active));
 		$photos = $q->result();
 
 		//echo '<pre>';
@@ -84,12 +84,15 @@ class photos_model extends CI_Model
 
 		// get full width photos
 		$this->db->join('photos', 'photos.id = photo_id');
-		$q1 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 1));
+		$q1 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 1, 'active' => 1));
 		$fullWidthPhotos = $q1->result();
+
+		//var_dump($fullWidthPhotos);
+		//die();
 
 		// get normal photos
 		$this->db->join('photos', 'photos.id = photo_id');
-		$q2 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 0));
+		$q2 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 0, 'active' => 1));
 		$normalPhotos = $q2->result();
 
 		// randomise
@@ -106,7 +109,7 @@ class photos_model extends CI_Model
 
 		// evenly space full width photos in list
 		$fullFrequency = count($normalPhotos) / count($fullWidthPhotos);
-		$fullFrequency = round($fullFrequency / 1.5) * 1.5;
+		$fullFrequency = round($fullFrequency / 3) * 3;
 
 		echo '<pre>';
 		echo 'freq: '.$fullFrequency;
@@ -129,7 +132,7 @@ class photos_model extends CI_Model
 			}
 			else {
 				// add normal photo
-				array_push($photos, $normalPhotos[$normalCounter]);
+				if ($normalCounter < count($normalPhotos)) array_push($photos, $normalPhotos[$normalCounter]);
 				$normalCounter++;
 			}
 		}
@@ -151,13 +154,11 @@ class photos_model extends CI_Model
 		}
 	}
 
-	public function checkFullWidthPhoto()
+	public function setPhotosActive($data)
 	{
-		if ($this->fullWidthCounter < count($this->photos['fullWidth']) && lcg_value() > .5) $this->addFullWidthPhoto();
-	}
-	public function addFullWidthPhoto()
-	{
-		array_push($this->album, array($this->photos['fullWidth'][$this->fullWidthCounter]));
-		$this->fullWidthCounter++;
+		$used = $data['used'];
+		$unused = $data['unused'];
+
+		print_r($used);
 	}
 }

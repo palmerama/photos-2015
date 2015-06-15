@@ -18,7 +18,7 @@
 		<?php
 			foreach($row as $photo) {
 		?>
-				<a href="#" class="photo best-fit" style="
+				<a href="javascript:;" class="photo best-fit" style="
 					background-image: url('');
 					width:<?php echo ((1/$photo->ratio)/$rowWidthTotal)*100; ?>%;
 				" data-id="<?php echo $photo->photo_id; ?>" data-ratio="<?php echo $photo->ratio; ?>">
@@ -35,7 +35,7 @@
 <?php }; ?>
 
 
-<div id="nav-bar">
+<div class="nav-bar <?php if ($admin != null) echo 'admin'; ?>">
 	<div class="table">
 		<div class="inner">
 			<a href="<?php echo base_url(); ?>" class="button">< albums</a>

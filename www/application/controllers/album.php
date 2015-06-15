@@ -20,7 +20,7 @@ class album extends CI_Controller
 	{
 		$album = $this->generateAlbum($title);
 
-		$this->load->view('includes/header');
+		$this->load->view('includes/header', array('admin' => $admin, 'unused' => $album['unused']));
 
 		$this->load->view('album', array(
 				'rows' => $album['rows'],
@@ -56,6 +56,7 @@ class album extends CI_Controller
 	public function generateAlbum($title)
 	{
 		$photos = $this->photos_model->getAlbumPhotos($title);
+		$unusedPhotos = $this->photos_model->getAlbumPhotos($title, 0);
 
 		$rows = array();
 		$row = array();
@@ -79,7 +80,8 @@ class album extends CI_Controller
 
 		return array(
 			'rows' => $rows,
-			'count' => count($photos)
+			'count' => count($photos),
+			'unused' => $unusedPhotos
 		);
 	}
 
@@ -91,5 +93,10 @@ class album extends CI_Controller
 	public function getPositionInPhotoList()
 	{
 		// hmmm
+	}
+
+	public function setPhotosActive()
+	{
+		$this->photos_model->setPhotosActive($this->db->post());
 	}
 }

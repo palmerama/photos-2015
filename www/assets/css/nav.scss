@@ -59,7 +59,7 @@ a.button:hover, a.button:active {
 
 // NAV BAR
 
-#nav-bar {
+.nav-bar {
   display: block;
   position: fixed;
   left: 0px;
@@ -126,6 +126,23 @@ a.button:hover, a.button:active {
         vertical-align: top;
         font-weight: 500;
         font-size: 80%;
+      }
+    }
+  }
+}
+
+body.admin {
+  .nav-bar {
+    background-color: $black;
+    color: $white;
+
+    .table .inner {
+      a.button {
+        color: $white;
+
+        &:hover, &:active {
+          background: $black;
+        }
       }
     }
   }

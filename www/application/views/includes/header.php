@@ -15,9 +15,10 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-	<script>window.data = { baseUrl: "<?php echo base_url(); ?>" }</script>
+	<script>window.data = { baseUrl: "<?php echo base_url(); ?>", admin: <?php if (isset($admin)) echo 'true'; else echo 'false'; ?>  }</script>
 </head>
 
-<body>
+<body<?php if (isset($admin)) echo ' class="admin"'; ?>>
+<?php if (isset($admin)) $this->load->view('includes/admin_bar'); ?>
 
-<div id="wrapper">
+<div class="wrapper">
