@@ -15,7 +15,13 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-	<script>window.data = { baseUrl: "<?php echo base_url(); ?>", admin: <?php if (isset($admin)) echo 'true'; else echo 'false'; ?>  }</script>
+	<script>
+		window.data = {
+			baseUrl: "<?php echo base_url(); ?>",
+			admin: <?php if (isset($admin)) echo 'true'; else echo 'false'; ?>
+			<?php if (isset($title)) { ?>, albumTitle: "<?php echo $title; ?>"<?php }; ?>
+		}
+	</script>
 </head>
 
 <body<?php if (isset($admin)) echo ' class="admin"'; ?>>

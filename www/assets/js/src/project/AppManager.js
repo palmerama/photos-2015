@@ -1,11 +1,13 @@
-define(["project/ImageManager", "project/AdminManager"],
-	function(ImageManager, AdminManager){
+define(["project/ImageManager", "project/AdminManager", "project/AlbumManager"],
+	function(ImageManager, AdminManager, AlbumManager){
 
 		function AppManager()
 		{
 			console.log("AppManager initialised");
 
-			if (window.data.admin == true) this.admin = new AdminManager();
+			if (window.data.admin == true) this.adminManager = new AdminManager();
+			if (window.data.album == true) this.albumManager = new AlbumManager();
+
 			this.initResize();
 		}
 
@@ -26,7 +28,7 @@ define(["project/ImageManager", "project/AdminManager"],
 			$(".row").each(this.setRowHeight.bind(this));
 			$(".best-fit").each(this.checkImageSize.bind(this));
 
-			if (this.admin != null) this.admin.onResize(e);
+			if (this.adminManager != null) this.adminManager.onResize(e);
 		}
 
 		p.setRowHeight = function(i, domEl)

@@ -20,7 +20,11 @@ class album extends CI_Controller
 	{
 		$album = $this->generateAlbum($title);
 
-		$this->load->view('includes/header', array('admin' => $admin, 'unused' => $album['unused']));
+		$this->load->view('includes/header', array(
+				'admin' => $admin,
+				'unused' => $album['unused'],
+				'title' => $title
+		));
 
 		$this->load->view('album', array(
 				'rows' => $album['rows'],
@@ -38,16 +42,14 @@ class album extends CI_Controller
 	public function photo($title, $photoId)
 	{
 		$album = $this->generateAlbum($title);
-		$position = $this->getPositionInPhotoList($photoId);
+		$photo = $this->photos_model->getPhotoById($photoId);
 
-		$this->load->view('includes/header');
+		$this->load->view('includes/header', array('title' => $title));
 
 		$this->load->view('photo', array(
-				'album' => $album['rows'],
 				'title' => $title,
-				'photoId' => $photoId,
-				'count' => $album['count'],
-				'position' => $position
+				'photo' => $photo,
+				'count' => $album['count']
 		));
 
 		$this->load->view('includes/footer');

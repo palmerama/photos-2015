@@ -48,4 +48,4 @@ $route['album/([a-zA-Z0-9-_]+)'] = 'album/menu/$1';
 $route['album/(:any)/admin'] = 'album/menu/$1/admin';
 
 // individual photo
-$route['album/(:any)/(:num)'] = 'album/photo/$1/$2';
+$route['photo/(:any)/(:num)'] = 'album/photo/$1/$2';

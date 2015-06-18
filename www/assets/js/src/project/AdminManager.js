@@ -8,7 +8,7 @@ define([],
 				$('a.shuffle-button').on("click", this.shuffle.bind(this));
 
 				$('a.save-button').on("click", this.saveChanges.bind(this));
-				$('a.photo').on("click", this.toggleUsed.bind(this));
+				$('body.admin a.photo').on("click", this.onPhotoClicked.bind(this));
 			}
 
 			var p = AdminManager.prototype;
@@ -18,7 +18,7 @@ define([],
 			{
 				$.ajax({
 					type: "GET",
-					url: window.data.baseUrl + "data/reOrderAlbum/" + $(".nav-bar .album").text(),
+					url: window.data.baseUrl + "data/reOrderAlbum/" + window.data.albumTitle,
 					success: this.reloadPage.bind(this)
 				});
 			}
@@ -27,15 +27,28 @@ define([],
 			{
 				$.ajax({
 					type: "GET",
-					url: window.data.baseUrl + "data/reOrderAlbum/" + $(".nav-bar .album").text() + "/0",
+					url: window.data.baseUrl + "data/reOrderAlbum/" + window.data.albumTitle + "/0",
 					success: this.reloadPage.bind(this)
 				});
 			}
 
-			p.toggleUsed = function(e)
+			p.onPhotoClicked = function(e)
 			{
 				this.showSaveButton();
 
+				// allow full button (div) inside main photo button
+				if ($(e.target).hasClass("full-width")) this.toggleFullWidth(e);
+				else this.toggleUsed(e);
+			}
+
+			p.toggleFullWidth = function(e)
+			{
+				$domEl = $(e.currentTarget).find(".full-width");
+				$domEl.hasClass("selected") ? $domEl.removeClass("selected") : $domEl.addClass("selected");
+			}
+
+			p.toggleUsed = function(e)
+			{
 				$domEl = $(e.currentTarget).find(".cell");
 ;				$domEl.hasClass("selected") ? $domEl.removeClass("selected") : $domEl.addClass("selected");
 			}
@@ -48,42 +61,57 @@ define([],
 
 			p.saveChanges = function()
 			{
-				this.usedList = {
+				this.saveData = {
 					used: [],
 					unused: [],
+					full_width: [],
+					not_full_width: [],
 					album_title: $(".nav-bar .album").text()
 				};
 
-				// main photos
+				console.log(this.saveData);
+
+				// main photos used/unused
 				var $photos = $('.wrapper a.photo');
 				$photos.each(this.buildUsedList.bind(this));
 
+				// main photos full width
+				$photos.each(this.buildFullWidthList.bind(this));
+
 				// photos in unused admin bar
-				var $unusedPhotos = $('.unused-photos a.photo');
+				$unusedPhotos = $('.unused-photos a.photo');
 				$unusedPhotos.each(this.buildUsedList.bind(this));
 
+				// send used to db
 				$.ajax({
 					type: "POST",
-					data: this.usedList,
-					url: window.data.baseUrl + "data/setPhotosActive",
+					data: this.saveData,
+					url: window.data.baseUrl + "data/setPhotos",
 					success: this.reOrderAlbumNoShuffle.bind(this)
 				});
 			}
 
+			p.buildFullWidthList = function(i, html)
+			{
+				if ($(html).find(".full-width").hasClass("selected")) this.saveData.full_width.push($(html).data("id"));
+				else this.saveData.not_full_width.push($(html).data("id"));
+			}
+
 			p.buildUsedList = function(i, html)
 			{
-				if ($(html).find(".cell").hasClass("selected")) this.usedList.unused.push($(html).data("id"));
-				else this.usedList.used.push($(html).data("id"));
+				if ($(html).find(".cell").hasClass("selected")) this.saveData.unused.push($(html).data("id"));
+				else this.saveData.used.push($(html).data("id"));
 			}
 
 			p.reloadPage = function()
 			{
-				window.location = window.data.baseUrl + "album/" + $(".nav-bar .album").text() + "/admin";
+				window.location = window.data.baseUrl + "album/" + window.data.albumTitle + "/admin";
 			}
 
 			p.onResize = function(e)
 			{
 				$(".unused-photos .photo").each(this.setPhotoHeight.bind(this));
+				$(".unused-photos").height( $(".admin-bar").innerHeight() - $(".unused-photos").offset().top - $(".controls").outerHeight() - $(".nav-bar").innerHeight());
 			}
 
 			p.setPhotoHeight = function(i, html)

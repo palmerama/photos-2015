@@ -48,6 +48,9 @@ a.button:hover, a.button:active {
   padding: 0 42px;
   background-color: #fcf9e8;
   color: #33332e; }
+  @media screen and (max-width: 768px) {
+    .nav-bar {
+      padding: 0 15px; } }
   .nav-bar .table {
     display: table;
     position: relative;
@@ -55,19 +58,23 @@ a.button:hover, a.button:active {
     left: 0px;
     width: 100%;
     height: 50px;
-    max-width: 1300px;
     margin: auto; }
     .nav-bar .table .inner {
       display: table-cell;
       position: relative;
-      width: 33%;
+      width: 25%;
       vertical-align: middle; }
+      .nav-bar .table .inner.middle {
+        width: 50%; }
       .nav-bar .table .inner .title {
         display: block;
         position: relative;
         float: left;
         font-size: 22px;
         text-transform: uppercase; }
+        @media screen and (max-width: 768px) {
+          .nav-bar .table .inner .title {
+            font-size: 18px; } }
       .nav-bar .table .inner .album {
         display: block;
         position: relative;
@@ -75,6 +82,13 @@ a.button:hover, a.button:active {
         text-transform: uppercase;
         text-align: center;
         margin: auto; }
+        @media screen and (max-width: 768px) {
+          .nav-bar .table .inner .album {
+            font-size: 18px; } }
+        .nav-bar .table .inner .album .position {
+          color: #737373;
+          font-size: 67%;
+          margin: 8px; }
       .nav-bar .table .inner a.button {
         display: block;
         position: relative;
@@ -82,6 +96,9 @@ a.button:hover, a.button:active {
         font-size: 80%;
         text-decoration: none;
         color: #33332e; }
+        @media screen and (max-width: 768px) {
+          .nav-bar .table .inner a.button {
+            font-size: 60%; } }
         .nav-bar .table .inner a.button:hover, .nav-bar .table .inner a.button:active {
           background: #fcf9e8; }
       .nav-bar .table .inner .name {
@@ -91,6 +108,9 @@ a.button:hover, a.button:active {
         vertical-align: top;
         font-weight: 500;
         font-size: 80%; }
+        @media screen and (max-width: 768px) {
+          .nav-bar .table .inner .name {
+            font-size: 60%; } }
 
 body.admin .nav-bar {
   background-color: #33332e;

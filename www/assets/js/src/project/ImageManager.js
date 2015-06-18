@@ -46,7 +46,7 @@ define([],
 			p.showImage = function($domEl, imgUrl)
 			{
 				$domEl.css("background-image", "url('" + imgUrl + "')");
-				TweenMax.to($domEl,.5 + Math.random() *.5, {autoAlpha:1, ease:Sine.easeIn});
+				TweenMax.to($domEl,.2 + Math.random() *.2, {autoAlpha:1, ease:Sine.easeIn});
 			}
 
 			// Return the base class constructor.

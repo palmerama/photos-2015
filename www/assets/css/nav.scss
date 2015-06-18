@@ -70,6 +70,10 @@ a.button:hover, a.button:active {
   box-sizing: border-box;
   padding: 0 42px;
 
+  @media screen and (max-width: $break-768) {
+    padding: 0 15px;
+  }
+
   background-color: $white;
   color: $black;
 
@@ -80,14 +84,18 @@ a.button:hover, a.button:active {
     left: 0px;
     width: 100%;
     height: 50px;
-    max-width: $max-width;
+    // max-width: $max-width;
     margin: auto;
 
     .inner {
       display: table-cell;
       position: relative;
-      width: 33%;
+      width: 25%;
       vertical-align: middle;
+
+      &.middle {
+        width: 50%;
+      }
 
       .title {
         display: block;
@@ -95,6 +103,10 @@ a.button:hover, a.button:active {
         float: left;
         font-size: 22px;
         text-transform: uppercase;
+
+        @media screen and (max-width: $break-768) {
+          font-size: 18px;
+        }
       }
 
       .album {
@@ -104,6 +116,16 @@ a.button:hover, a.button:active {
         text-transform: uppercase;
         text-align: center;
         margin: auto;
+
+        @media screen and (max-width: $break-768) {
+          font-size: 18px;
+        }
+
+        .position {
+          color: $grey;
+          font-size: 67%;
+          margin: 8px;
+        }
       }
 
       a.button {
@@ -113,6 +135,10 @@ a.button:hover, a.button:active {
         font-size: 80%;
         text-decoration: none;
         color: $black;
+
+        @media screen and (max-width: $break-768) {
+          font-size: 60%;
+        }
 
         &:hover, &:active {
           background: $white;
@@ -126,6 +152,10 @@ a.button:hover, a.button:active {
         vertical-align: top;
         font-weight: 500;
         font-size: 80%;
+
+        @media screen and (max-width: $break-768) {
+          font-size: 60%;
+        }
       }
     }
   }

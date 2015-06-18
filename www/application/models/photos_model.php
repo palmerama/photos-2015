@@ -173,12 +173,18 @@ class photos_model extends CI_Model
 		}
 	}
 
-	public function setPhotosActive($data)
+	public function setPhotos($data)
+	{
+		$albumId = $this->getAlbumIdFromTitle($data['album_title']);
+
+		$this->setUsed($data, $albumId);
+		$this->setFullWidth($data, $albumId);
+	}
+
+	public function setUsed($data, $albumId)
 	{
 		$used = $data['used'];
 		$unused = $data['unused'];
-
-		$albumId = $this->getAlbumIdFromTitle($data['album_title']);
 
 		foreach ($used as $id)
 		{
@@ -189,5 +195,28 @@ class photos_model extends CI_Model
 		{
 			$this->db->update('album_photos', array('active' => 0), array('photo_id' => $id, 'album_id' => $albumId));
 		}
+	}
+
+	public function setFullWidth($data, $albumId)
+	{
+		$fullWidth = $data['full_width'];
+		$notFullWidth = $data['not_full_width'];
+
+		foreach ($fullWidth as $id)
+		{
+			$this->db->update('album_photos', array('full_width' => 1), array('photo_id' => $id, 'album_id' => $albumId));
+		}
+
+		foreach ($notFullWidth as $id)
+		{
+			$this->db->update('album_photos', array('full_width' => 0), array('photo_id' => $id, 'album_id' => $albumId));
+		}
+	}
+
+	public function getPhotoById($id)
+	{
+		$q = $this->db->get_where('photos', array('id' => $id));
+		$result = $q->result();
+		return $result[0];
 	}
 }

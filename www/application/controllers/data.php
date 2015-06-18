@@ -9,10 +9,10 @@ class data extends CI_Controller
 		$this->load->model('photos_model');
 	}
 
-	public function setPhotosActive()
+	public function setPhotos()
 	{
 		$data = $this->input->post();
-		$this->photos_model->setPhotosActive($data);
+		$this->photos_model->setPhotos($data);
 	}
 
 	public function reOrderAlbum($title, $shuffle = 1)
