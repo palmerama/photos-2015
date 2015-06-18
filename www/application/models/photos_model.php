@@ -76,7 +76,16 @@ class photos_model extends CI_Model
 		return $photos;
 	}
 
-	public function reOrderAlbum($title)
+	public function getAlbumIdFromTitle($title)
+	{
+		// get album id
+		$q = $this->db->get_where('albums', array('title' => $title));
+		$album = $q->result();
+
+		return $album[0]->id;
+	}
+
+	public function reOrderAlbum($title, $shuffle)
 	{
 		// get album id
 		$q = $this->db->get_where('albums', array('title' => $title));
@@ -84,6 +93,7 @@ class photos_model extends CI_Model
 
 		// get full width photos
 		$this->db->join('photos', 'photos.id = photo_id');
+		$this->db->order_by('position', 'asc');
 		$q1 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 1, 'active' => 1));
 		$fullWidthPhotos = $q1->result();
 
@@ -92,12 +102,16 @@ class photos_model extends CI_Model
 
 		// get normal photos
 		$this->db->join('photos', 'photos.id = photo_id');
+		$this->db->order_by('position', 'asc');
 		$q2 = $this->db->get_where('album_photos', array('album_id' => $album[0]->id, 'full_width' => 0, 'active' => 1));
 		$normalPhotos = $q2->result();
 
 		// randomise
-		shuffle($fullWidthPhotos);
-		shuffle($normalPhotos);
+		if ($shuffle == 1)
+		{
+			shuffle($fullWidthPhotos);
+			shuffle($normalPhotos);
+		}
 
 		// set up
 		$photos = array();
@@ -111,6 +125,10 @@ class photos_model extends CI_Model
 		$fullFrequency = count($normalPhotos) / count($fullWidthPhotos);
 		$fullFrequency = round($fullFrequency / 3) * 3;
 
+		// odd numbers only
+		while ($fullFrequency%2 == 0) $fullFrequency--;
+
+
 		echo '<pre>';
 		echo 'freq: '.$fullFrequency;
 
@@ -120,7 +138,7 @@ class photos_model extends CI_Model
 			$gapCounter++;
 
 			// add full width photo?
-			if ($gapCounter >= $fullFrequency)
+			if ($gapCounter == $fullFrequency)
 			{
 				$gapCounter = 0;
 
@@ -139,9 +157,7 @@ class photos_model extends CI_Model
 
 		echo("\n\n==============\n\n");
 		print_r($photos);
-
 		echo '</pre>';
-		// die();
 
 
 		// save positions back in order
@@ -149,6 +165,9 @@ class photos_model extends CI_Model
 
 		foreach ($photos as $photo)
 		{
+			if ($shuffle == 1) $pos = $position;
+			else $pos = $photo->position;
+
 			$this->db->update('photos', array('position' => $position), array('id' => $photo->id));
 			$position++;
 		}
@@ -159,6 +178,16 @@ class photos_model extends CI_Model
 		$used = $data['used'];
 		$unused = $data['unused'];
 
-		print_r($used);
+		$albumId = $this->getAlbumIdFromTitle($data['album_title']);
+
+		foreach ($used as $id)
+		{
+			$this->db->update('album_photos', array('active' => 1), array('photo_id' => $id, 'album_id' => $albumId));
+		}
+
+		foreach ($unused as $id)
+		{
+			$this->db->update('album_photos', array('active' => 0), array('photo_id' => $id, 'album_id' => $albumId));
+		}
 	}
 }

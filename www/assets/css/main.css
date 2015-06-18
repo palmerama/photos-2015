@@ -70,7 +70,8 @@ body.admin .admin-bar {
   height: 100%;
   box-sizing: border-box;
   padding: 20px 20px 50px;
-  float: right; }
+  float: right;
+  overflow: auto; }
   body.admin .admin-bar a.button {
     position: relative;
     display: block;
@@ -99,7 +100,8 @@ body.admin .admin-bar {
       position: relative;
       background: url("") center center no-repeat;
       background-size: cover;
-      margin-top: 10px; }
+      margin-top: 10px;
+      color: white; }
       body.admin .admin-bar .unused-photos .photo .table {
         display: table;
         position: relative;
@@ -112,7 +114,8 @@ body.admin .admin-bar {
           width: 100%;
           height: 120%;
           vertical-align: middle;
-          font-size: 24px;
-          background-color: rgba(0, 0, 0, 0.65); }
+          font-size: 24px; }
+          body.admin .admin-bar .unused-photos .photo .table .cell.selected {
+            background-color: rgba(0, 0, 0, 0.65); }
 
 /*# sourceMappingURL=main.css.map */

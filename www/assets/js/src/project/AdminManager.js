@@ -8,7 +8,7 @@ define([],
 				$('a.shuffle-button').on("click", this.shuffle.bind(this));
 
 				$('a.save-button').on("click", this.saveChanges.bind(this));
-				$('.wrapper a.photo').on("click", this.toggleUsed.bind(this));
+				$('a.photo').on("click", this.toggleUsed.bind(this));
 			}
 
 			var p = AdminManager.prototype;
@@ -18,8 +18,17 @@ define([],
 			{
 				$.ajax({
 					type: "GET",
-					url: window.data.baseUrl + "album/reOrderAlbum/" + $(".nav-bar .album").text(),
-					success: this.onShuffle.bind(this)
+					url: window.data.baseUrl + "data/reOrderAlbum/" + $(".nav-bar .album").text(),
+					success: this.reloadPage.bind(this)
+				});
+			}
+
+			p.reOrderAlbumNoShuffle = function(e)
+			{
+				$.ajax({
+					type: "GET",
+					url: window.data.baseUrl + "data/reOrderAlbum/" + $(".nav-bar .album").text() + "/0",
+					success: this.reloadPage.bind(this)
 				});
 			}
 
@@ -33,6 +42,7 @@ define([],
 
 			p.showSaveButton = function()
 			{
+				$('.shuffle-button').css("display", "none");
 				$('.save-button').css("display", "block");
 			}
 
@@ -40,26 +50,33 @@ define([],
 			{
 				this.usedList = {
 					used: [],
-					unused: []
+					unused: [],
+					album_title: $(".nav-bar .album").text()
 				};
 
+				// main photos
 				var $photos = $('.wrapper a.photo');
-				$photos.each(this.rebuildUsedList.bind(this));
+				$photos.each(this.buildUsedList.bind(this));
+
+				// photos in unused admin bar
+				var $unusedPhotos = $('.unused-photos a.photo');
+				$unusedPhotos.each(this.buildUsedList.bind(this));
 
 				$.ajax({
 					type: "POST",
 					data: this.usedList,
-					url: window.data.baseUrl + "album/setPhotosActive"
+					url: window.data.baseUrl + "data/setPhotosActive",
+					success: this.reOrderAlbumNoShuffle.bind(this)
 				});
 			}
 
-			p.rebuildUsedList = function(i, html)
+			p.buildUsedList = function(i, html)
 			{
 				if ($(html).find(".cell").hasClass("selected")) this.usedList.unused.push($(html).data("id"));
 				else this.usedList.used.push($(html).data("id"));
 			}
 
-			p.onShuffle = function()
+			p.reloadPage = function()
 			{
 				window.location = window.data.baseUrl + "album/" + $(".nav-bar .album").text() + "/admin";
 			}

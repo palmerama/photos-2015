@@ -85,18 +85,8 @@ class album extends CI_Controller
 		);
 	}
 
-	public function reOrderAlbum($title)
-	{
-		$this->photos_model->reOrderAlbum($title);
-	}
-
 	public function getPositionInPhotoList()
 	{
 		// hmmm
-	}
-
-	public function setPhotosActive()
-	{
-		$this->photos_model->setPhotosActive($this->db->post());
 	}
 }

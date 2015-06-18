@@ -10,18 +10,18 @@
 		<?php
 			foreach($unused as $photo) {
 			?>
-			<div class="photo best-fit" style="
+			<a href="javascript:;" class="photo best-fit" style="
 					background-image: url('');
 					width: 100%;
 					" data-id="<?php echo $photo->photo_id; ?>" data-ratio="<?php echo $photo->ratio; ?>">
 
 				<?php if ($admin != null) { ?>
 					<div class="table">
-						<div class="cell"><?php echo $photo->photo_id; ?></div>
+						<div class="cell selected"><?php echo $photo->photo_id; ?></div>
 					</div>
 				<?php }; ?>
 
-			</div	>
+			</a	>
 		<?php }; ?>
 
 	</div>
