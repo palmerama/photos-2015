@@ -1,5 +1,7 @@
 
+<div class="photo-solo best-fit prev" data-id="<?php echo $previous->id; ?>" data-ratio="<?php echo $previous->ratio; ?>"></div>
 <div class="photo-solo best-fit" data-id="<?php echo $photo->id; ?>" data-ratio="<?php echo $photo->ratio; ?>"></div>
+<div class="photo-solo best-fit next" data-id="<?php echo $next->id; ?>" data-ratio="<?php echo $next->ratio; ?>"></div>
 
 <div class="nav-bar">
 	<div class="table">

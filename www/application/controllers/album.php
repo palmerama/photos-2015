@@ -44,12 +44,24 @@ class album extends CI_Controller
 		$album = $this->generateAlbum($title);
 		$photo = $this->photos_model->getPhotoById($photoId);
 
+		$next = null;
+		$previous = null;
+
+		// get next & previous
+		foreach($album['photos'] as $albumPhoto)
+		{
+			if ($albumPhoto->position == $photo->position-1) $previous = $albumPhoto;
+			else if ($albumPhoto->position == $photo->position+1) $next = $albumPhoto;
+		}
+
 		$this->load->view('includes/header', array('title' => $title));
 
 		$this->load->view('photo', array(
 				'title' => $title,
 				'photo' => $photo,
-				'count' => $album['count']
+				'count' => $album['count'],
+				'previous' => $previous,
+				'next' => $next
 		));
 
 		$this->load->view('includes/footer');
@@ -83,7 +95,8 @@ class album extends CI_Controller
 		return array(
 			'rows' => $rows,
 			'count' => count($photos),
-			'unused' => $unusedPhotos
+			'unused' => $unusedPhotos,
+			'photos' => $photos
 		);
 	}
 
