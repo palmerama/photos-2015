@@ -76,7 +76,7 @@ body.admin .admin-button {
   body.admin .admin-button.save-button {
     display: none; }
   body.admin .admin-button:hover, body.admin .admin-button:active, body.admin .admin-button.selected {
-    background-color: #FF6600;
+    background-color: #ff6600;
     color: #33332e;
     border: 1px solid #33332e; }
   body.admin .admin-button.selected:hover, body.admin .admin-button.selected:active {
@@ -98,7 +98,8 @@ body.admin .admin-bar {
   box-sizing: border-box;
   padding: 20px 20px 50px;
   float: right;
-  overflow: hidden; }
+  overflow: hidden;
+  background-color: black; }
   body.admin .admin-bar .controls {
     position: relative;
     display: block;
@@ -148,5 +149,3 @@ body.admin .admin-bar {
   background-size: contain; }
   .photo-solo.next, .photo-solo.prev {
     display: none; }
-
-/*# sourceMappingURL=main.css.map */

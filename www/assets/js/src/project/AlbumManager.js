@@ -15,15 +15,19 @@ define([],
 			p.onPhotoClicked = function(e)
 			{
 				// store scroll position
-				if (sessionStorage.adam_palmer_photos == null) sessionStorage.adam_palmer_photos
+				sessionStorage["ap_" + window.data.albumTitle] = $(window).scrollTop();
 
 				// change page
-				window.location = window.data.baseUrl + "photo/" + $(".nav-bar .album").text() + "/" + $(e.currentTarget).attr("data-id");
+				window.location = window.data.baseUrl + "photo/" + window.data.albumTitle + "/" + $(e.currentTarget).attr("data-id");
 			}
 
 			p.prepStorage = function()
 			{
-				if (sessionStorage.albums == null) sessionStorage.albums = {};
+				if (sessionStorage["ap_" + window.data.albumTitle] != undefined)
+				{
+					console.log("BOOM!", parseInt(sessionStorage["ap_" + window.data.albumTitle]));
+					setTimeout(function() { $(window).scrollTop(parseInt(sessionStorage["ap_" + window.data.albumTitle])); }, 10);
+				}
 			}
 
 			// Return the base class constructor.

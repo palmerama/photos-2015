@@ -6,7 +6,7 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager"],
 			console.log("AppManager initialised");
 
 			if (window.data.admin == true) this.adminManager = new AdminManager();
-			if (window.data.album == true) this.albumManager = new AlbumManager();
+			else if (window.data.album == true) this.albumManager = new AlbumManager();
 
 			this.initResize();
 		}
