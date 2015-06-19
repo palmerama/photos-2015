@@ -209,4 +209,8 @@ body.admin {
 
   background: $photoBG url("") center center no-repeat;
   background-size: contain;
+
+  &.next, &.prev {
+    display: none;
+  }
 }

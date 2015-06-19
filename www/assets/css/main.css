@@ -146,5 +146,7 @@ body.admin .admin-bar {
   visibility: hidden;
   background: #d7d7d7 url("") center center no-repeat;
   background-size: contain; }
+  .photo-solo.next, .photo-solo.prev {
+    display: none; }
 
 /*# sourceMappingURL=main.css.map */
