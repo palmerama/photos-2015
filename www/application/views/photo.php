@@ -1,7 +1,13 @@
 
-<div class="photo-solo best-fit prev" data-id="<?php echo $previous->id; ?>" data-ratio="<?php echo $previous->ratio; ?>"></div>
-<div class="photo-solo best-fit" data-id="<?php echo $photo->id; ?>" data-ratio="<?php echo $photo->ratio; ?>"></div>
-<div class="photo-solo best-fit next" data-id="<?php echo $next->id; ?>" data-ratio="<?php echo $next->ratio; ?>"></div>
+<script>window.data.photo = true;</script>
+<script src="<?php echo base_url('assets/js/vendor/hammer.min.js'); ?>"></script>
+
+<div class="photos-harness">
+	<div class="photo-solo best-fit prev" data-id="<?php echo $previous->id; ?>" data-ratio="<?php echo $previous->ratio; ?>"></div>
+	<div class="photo-solo best-fit middle" data-id="<?php echo $photo->id; ?>" data-ratio="<?php echo $photo->ratio; ?>"></div>
+	<div class="photo-solo best-fit next" data-id="<?php echo $next->id; ?>" data-ratio="<?php echo $next->ratio; ?>"></div>
+</div>
+
 
 <div class="nav-bar">
 	<div class="table">

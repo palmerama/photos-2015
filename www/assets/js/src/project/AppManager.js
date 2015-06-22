@@ -1,5 +1,5 @@
-define(["project/ImageManager", "project/AdminManager", "project/AlbumManager"],
-	function(ImageManager, AdminManager, AlbumManager){
+define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", "project/PhotoManager"],
+	function(ImageManager, AdminManager, AlbumManager, PhotoManager){
 
 		function AppManager()
 		{
@@ -7,6 +7,7 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager"],
 
 			if (window.data.admin == true) this.adminManager = new AdminManager();
 			else if (window.data.album == true) this.albumManager = new AlbumManager();
+			else if (window.data.photo == true) this.photoManager = new PhotoManager();
 
 			this.initResize();
 		}
