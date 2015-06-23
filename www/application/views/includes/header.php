@@ -27,4 +27,4 @@
 <body<?php if (isset($admin)) echo ' class="admin"'; ?>>
 <?php if (isset($admin)) $this->load->view('includes/admin_bar'); ?>
 
-<div class="wrapper">
+<div class="wrapper<?php if (isset($screen)) echo " ".$screen."-screen"; ?>">

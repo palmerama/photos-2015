@@ -25,7 +25,7 @@ define([],
 			{
 				if (sessionStorage["ap_" + window.data.albumTitle] != undefined)
 				{
-					console.log("BOOM!", parseInt(sessionStorage["ap_" + window.data.albumTitle]));
+					// console.log("BOOM!", parseInt(sessionStorage["ap_" + window.data.albumTitle]));
 					setTimeout(function() { $(window).scrollTop(parseInt(sessionStorage["ap_" + window.data.albumTitle])); }, 10);
 				}
 			}

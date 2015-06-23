@@ -28,7 +28,10 @@ html, body {
   height: 100%;
   box-sizing: border-box;
   text-align: left;
-  overflow: hidden;
+
+  &.photo-screen {
+    overflow: hidden;
+  }
 }
 
 
@@ -215,16 +218,20 @@ body.admin {
   height: 100%;
   margin: auto;
 
+  opacity: 0;
+  visibility: hidden;
+
   &.prev {
     left: -100%;
+    opacity: 1;
+    visibility: visible;
   }
 
   &.next {
     left: 100%;
+    opacity: 1;
+    visibility: visible;
   }
-
-  opacity: 0;
-  visibility: hidden;
 
   background: $black url("") center center no-repeat;
   background-size: contain;

@@ -20,8 +20,9 @@ html, body {
   padding: 0 0 50px;
   height: 100%;
   box-sizing: border-box;
-  text-align: left;
-  overflow: hidden; }
+  text-align: left; }
+  .wrapper.photo-screen {
+    overflow: hidden; }
 
 .row {
   display: block;
@@ -157,8 +158,12 @@ body.admin .admin-bar {
   background: #33332e url("") center center no-repeat;
   background-size: contain; }
   .photo-solo.prev {
-    left: -100%; }
+    left: -100%;
+    opacity: 1;
+    visibility: visible; }
   .photo-solo.next {
-    left: 100%; }
+    left: 100%;
+    opacity: 1;
+    visibility: visible; }
 
 /*# sourceMappingURL=main.css.map */

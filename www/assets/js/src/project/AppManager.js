@@ -5,9 +5,11 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 		{
 			console.log("AppManager initialised");
 
+			this.imageManager = new ImageManager();
+
 			if (window.data.admin == true) this.adminManager = new AdminManager();
 			else if (window.data.album == true) this.albumManager = new AlbumManager();
-			else if (window.data.photo == true) this.photoManager = new PhotoManager();
+			else if (window.data.photo == true) this.photoManager = new PhotoManager(this.imageManager);
 
 			this.initResize();
 		}
@@ -17,8 +19,6 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 
 		p.initResize = function()
 		{
-			this.imageManager = new ImageManager();
-
 			this.onResizeBound = this.onResize.bind(this);
 			$(window).on("resize", this.onResizeBound);
 			$(window).resize();

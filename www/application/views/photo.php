@@ -1,11 +1,16 @@
 
-<script>window.data.photo = true;</script>
+<script>
+	window.data.photo = true;
+	window.data.main = {id: <?php echo $photo->id; ?>, ratio: <?php echo $photo->ratio; ?>};
+	window.data.prev = {id: <?php echo $previous->id; ?>, ratio: <?php echo $previous->ratio; ?>};
+	window.data.next = {id: <?php echo $next->id; ?>, ratio: <?php echo $next->ratio; ?>};
+</script>
 <script src="<?php echo base_url('assets/js/vendor/hammer.min.js'); ?>"></script>
 
 <div class="photos-harness">
-	<div class="photo-solo best-fit prev" data-id="<?php echo $previous->id; ?>" data-ratio="<?php echo $previous->ratio; ?>"></div>
-	<div class="photo-solo best-fit middle" data-id="<?php echo $photo->id; ?>" data-ratio="<?php echo $photo->ratio; ?>"></div>
-	<div class="photo-solo best-fit next" data-id="<?php echo $next->id; ?>" data-ratio="<?php echo $next->ratio; ?>"></div>
+	<div class="photo-solo best-fit prev" data-id="" data-ratio=""></div>
+	<div class="photo-solo best-fit middle" data-id="" data-ratio=""></div>
+	<div class="photo-solo best-fit next" data-id="" data-ratio=""></div>
 </div>
 
 

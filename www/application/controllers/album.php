@@ -41,6 +41,37 @@ class album extends CI_Controller
 	*/
 	public function photo($title, $photoId)
 	{
+		$details = $this->photoGetPrevNext($title, $photoId);
+
+		$this->load->view('includes/header', array('title' => $title, 'screen' => 'photo'));
+
+		$this->load->view('photo', array(
+				'title' => $title,
+				'photo' => $details['photo'],
+				'count' => $details['album']['count'],
+				'previous' => $details['previous'],
+				'next' => $details['next']
+		));
+
+		$this->load->view('includes/footer');
+	}
+
+	public function getPhotoDetails($title, $photoId)
+	{
+		$details = $this->photoGetPrevNext($title, $photoId);
+		$json = json_encode(array(
+			'photo' => $details['photo'],
+			'previous' => $details['previous'],
+			'next' => $details['next'],
+			'count' => $details['album']['count']
+		));
+
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
+	public function photoGetPrevNext($title, $photoId)
+	{
 		$album = $this->generateAlbum($title);
 		$photo = $this->photos_model->getPhotoById($photoId);
 
@@ -54,17 +85,12 @@ class album extends CI_Controller
 			else if ($albumPhoto->position == $photo->position+1) $next = $albumPhoto;
 		}
 
-		$this->load->view('includes/header', array('title' => $title));
-
-		$this->load->view('photo', array(
-				'title' => $title,
-				'photo' => $photo,
-				'count' => $album['count'],
-				'previous' => $previous,
-				'next' => $next
-		));
-
-		$this->load->view('includes/footer');
+		return array(
+			'album' => $album,
+			'photo' => $photo,
+			'previous' => $previous,
+			'next' => $next
+		);
 	}
 
 	public function generateAlbum($title)
