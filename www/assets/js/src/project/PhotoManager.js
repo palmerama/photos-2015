@@ -9,9 +9,10 @@ define([],
 
 				// hammer on main image
 				this.hammertime = new Hammer($(".photos-harness")[0]); // middle one (main photo)
-				this.hammertime.on("panstart panend panleft panright", this.handleHammer.bind(this));
+				this.hammertime.on("panstart panend panleft panright tap", this.handleHammer.bind(this));
 
-				// panstart panend panleft panright
+				this.jumpDelta = 30;
+				this.tapPerc = .25;
 
 				// load prev & next at start
 				this.loadMainPhoto();
@@ -29,14 +30,19 @@ define([],
 
 			p.loadPrevNext = function()
 			{
-				$(".photo-solo.prev").eq(0).attr("data-id", window.data.prev.id);
-				$(".photo-solo.prev").eq(0).attr("data-ratio", window.data.prev.ratio);
+				if (window.data.prev != null)
+				{
+					$(".photo-solo.prev").eq(0).attr("data-id", window.data.prev.id);
+					$(".photo-solo.prev").eq(0).attr("data-ratio", window.data.prev.ratio);
+					this.imageManager.checkImageSize( $(".photo-solo.prev").eq(0) );
+				}
 
-				$(".photo-solo.next").eq(0).attr("data-id", window.data.next.id);
-				$(".photo-solo.next").eq(0).attr("data-ratio", window.data.next.ratio);
-
-				this.imageManager.checkImageSize( $(".photo-solo.prev").eq(0) );
-				this.imageManager.checkImageSize( $(".photo-solo.next").eq(0) );
+				if (window.data.next != null)
+				{
+					$(".photo-solo.next").eq(0).attr("data-id", window.data.next.id);
+					$(".photo-solo.next").eq(0).attr("data-ratio", window.data.next.ratio);
+					this.imageManager.checkImageSize( $(".photo-solo.next").eq(0) );
+				}
 			}
 
 			p.handleHammer = function(e)
@@ -46,6 +52,22 @@ define([],
 
 				switch(e.type)
 				{
+					case 'tap':
+
+						var tapWidth = window.innerWidth * this.tapPerc;
+
+						if (e.center.x < tapWidth)
+						{
+							xTarget = window.innerWidth;
+							nextId = $(".photo-solo.prev").attr("data-id");
+						}
+						else if (e.center.x > window.innerWidth-tapWidth) {
+							xTarget = -window.innerWidth;
+							nextId = $(".photo-solo.next").attr("data-id");
+						}
+
+						break;
+
 					case 'swiperight':
 						xTarget = window.innerWidth;
 						nextId = $(".photo-solo.prev").attr("data-id");
@@ -82,35 +104,24 @@ define([],
 						break;
 
 					case 'panend':
-
-						console.log(e.velocity);
+						// console.log(e.velocity, e.deltaX);
 
 						this.xStart = null;
-						var xTarget = 0;
+						var xTarget = null;
 
 						var left = parseInt($(".photos-harness").css("left"));
 						var nextId = null;
 
-						if (left > window.innerWidth/3)
+						if (left > window.innerWidth/3 || e.deltaX >= this.jumpDelta)
 						{
 							xTarget = window.innerWidth;
 							nextId = $(".photo-solo.prev").attr("data-id");
 						}
-						else if (left < -window.innerWidth/3)
+						else if (left < -window.innerWidth/3 || e.deltaX <= -this.jumpDelta)
 						{
 							xTarget = -window.innerWidth;
 							nextId = $(".photo-solo.next").attr("data-id");
 						}
-
-						var params = {css:{left:xTarget}, ease:Sine.easeOut};
-						//console.log("NEXT ID:", nextId);
-
-						if (nextId != null)
-						{
-							params.onComplete = this.updatePhoto.bind(this);
-							params.onCompleteParams = [nextId];
-						}
-						TweenMax.to(".photos-harness", .3, params);
 
 						break;
 
@@ -119,6 +130,19 @@ define([],
 						if (this.xStart != null) TweenMax.set(".photos-harness", { css:{left:parseInt(this.xStart) + e.deltaX} });
 						// $(".photos-harness").css("left", parseInt(this.xStart) + e.deltaX);
 						break;
+				}
+
+				if (xTarget != null)
+				{
+					var params = {css:{left:xTarget}, ease:Sine.easeOut};
+
+					if (nextId != null)
+					{
+						params.onComplete = this.updatePhoto.bind(this);
+						params.onCompleteParams = [nextId];
+					}
+
+					TweenMax.to(".photos-harness", .3, params);
 				}
 			}
 
@@ -138,8 +162,8 @@ define([],
 			p.resetData = function(data)
 			{
 				window.data.main = {id: data.photo.id, ratio: data.photo.ratio};
-				window.data.prev = {id: data.previous.photo_id, ratio: data.previous.ratio};
-				window.data.next = {id: data.next.photo_id, ratio: data.next.ratio};
+				if (data.previous) window.data.prev = {id: data.previous.photo_id, ratio: data.previous.ratio};
+				if (data.next) window.data.next = {id: data.next.photo_id, ratio: data.next.ratio};
 
 				this.loadMainPhoto();
 

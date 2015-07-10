@@ -2,8 +2,14 @@
 <script>
 	window.data.photo = true;
 	window.data.main = {id: <?php echo $photo->id; ?>, ratio: <?php echo $photo->ratio; ?>};
+
+	<?php if (isset($previous)) { ?>
 	window.data.prev = {id: <?php echo $previous->id; ?>, ratio: <?php echo $previous->ratio; ?>};
+	<?php }; ?>
+
+	<?php if (isset($next)) { ?>
 	window.data.next = {id: <?php echo $next->id; ?>, ratio: <?php echo $next->ratio; ?>};
+	<?php }; ?>
 </script>
 <script src="<?php echo base_url('assets/js/vendor/hammer.min.js'); ?>"></script>
 
