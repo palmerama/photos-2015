@@ -10,7 +10,7 @@
 </a>
 <?php }; ?>
 
-<div class="nav-bar">
+<div class="nav-bar home-screen">
 	<div class="table">
 		<div class="inner">
 			<div class="title">Some Photos I Took</div>

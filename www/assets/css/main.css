@@ -12,6 +12,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.5px;
   -webkit-tap-highlight-color: transparent; }
+  html.stop-scrolling, body.stop-scrolling {
+    overflow: hidden; }
 
 .wrapper {
   position: relative;
@@ -155,7 +157,7 @@ body.admin .admin-bar {
   margin: auto;
   opacity: 0;
   visibility: hidden;
-  background: #33332e url("") center center no-repeat;
+  background: url("") center center no-repeat;
   background-size: contain; }
   .photo-solo.prev {
     left: -100%;

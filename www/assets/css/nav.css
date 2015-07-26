@@ -72,10 +72,17 @@ a.button:hover, a.button:active {
     .nav-bar .table .inner {
       display: table-cell;
       position: relative;
-      width: 25%;
-      vertical-align: middle; }
+      width: 15%;
+      vertical-align: middle;
+      min-width: 144px; }
+      @media screen and (max-width: 768px) {
+        .nav-bar .table .inner {
+          min-width: 110px; } }
+      @media screen and (max-width: 485px) {
+        .nav-bar .table .inner {
+          min-width: 54px; } }
       .nav-bar .table .inner.middle {
-        width: 50%; }
+        width: 70%; }
       .nav-bar .table .inner .title {
         display: block;
         position: relative;
@@ -103,6 +110,12 @@ a.button:hover, a.button:active {
           color: #737373;
           font-size: 67%;
           margin: 8px; }
+          @media screen and (max-width: 570px) {
+            .nav-bar .table .inner .album .position {
+              display: block;
+              margin: -5px 8px 0; }
+              .nav-bar .table .inner .album .position:first-child {
+                display: none; } }
       .nav-bar .table .inner a.button {
         display: block;
         position: relative;
@@ -126,6 +139,10 @@ a.button:hover, a.button:active {
         @media screen and (max-width: 768px) {
           .nav-bar .table .inner .name {
             font-size: 60%; } }
+  .nav-bar.home-screen .table .inner {
+    width: 30%; }
+    .nav-bar.home-screen .table .inner:first-child {
+      width: 80%; }
 
 body.admin .nav-bar {
   background-color: #33332e;

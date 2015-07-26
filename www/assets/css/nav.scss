@@ -103,11 +103,21 @@ a.button:hover, a.button:active {
     .inner {
       display: table-cell;
       position: relative;
-      width: 25%;
+      width: 15%;
       vertical-align: middle;
+      min-width: 144px;
+
+      @media screen and (max-width: $break-768) {
+        min-width: 110px;
+      }
+
+      @media screen and (max-width: 485px) {
+        min-width: 54px;
+      }
 
       &.middle {
-        width: 50%;
+        width: 70%;
+        //background-color: deepskyblue;
       }
 
       .title {
@@ -143,6 +153,16 @@ a.button:hover, a.button:active {
           color: $grey;
           font-size: 67%;
           margin: 8px;
+          // background-color: yellow;
+
+          @media screen and (max-width: $break-570) {
+            &:first-child {
+              display: none;
+            }
+
+            display: block;
+            margin: -5px 8px 0;
+          }
         }
       }
 
@@ -175,6 +195,16 @@ a.button:hover, a.button:active {
         @media screen and (max-width: $break-768) {
           font-size: 60%;
         }
+      }
+    }
+  }
+
+  &.home-screen {
+    .table .inner {
+      width: 30%;
+      
+      &:first-child {
+        width: 80%;
       }
     }
   }
