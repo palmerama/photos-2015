@@ -28,7 +28,7 @@ html, body {
   position: relative;
   width: auto;
   margin: auto;
-  padding: 0 0 $nav-bar-height;
+  padding: 0;
   height: 100%;
   box-sizing: border-box;
   text-align: left;
@@ -36,6 +36,12 @@ html, body {
   &.photo-screen {
     overflow: hidden;
   }
+}
+
+
+.best-fit {
+  background: url("../../assets/img/spinner.gif") center center no-repeat;
+  background-size: 32px;
 }
 
 
@@ -54,14 +60,11 @@ html, body {
     height: 100%;
     float: left;
 
-    background: url("") center center no-repeat;
-    background-size: cover;
-
     box-sizing: border-box;
     border: 1px solid $white;
 
-    opacity: 0;
-    visibility: hidden;
+    //opacity: 0;
+    //visibility: hidden;
 
     .table {
       display: table;
@@ -223,22 +226,22 @@ body.admin {
   height: 100%;
   margin: auto;
 
-  opacity: 0;
-  visibility: hidden;
+  //opacity: 0;
+  //visibility: hidden;
 
   &.prev {
     left: -100%;
     opacity: 1;
-    visibility: visible;
+    //visibility: visible;
   }
 
   &.next {
     left: 100%;
     opacity: 1;
-    visibility: visible;
+    //visibility: visible;
   }
 
   // background: $black url("") center center no-repeat;
-  background: url("") center center no-repeat;
-  background-size: contain;
+  //background: url("") center center no-repeat;
+  //background-size: contain;
 }

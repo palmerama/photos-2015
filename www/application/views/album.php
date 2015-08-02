@@ -9,9 +9,8 @@
 	<div class="row">
 		<?php foreach($row as $photo) { ?>
 			<a href="javascript:;" class="photo best-fit" style="
-				background-image: url('');
 				width:<?php echo ((1/$photo->ratio)/$rowWidthTotal)*100; ?>%;
-			" data-id="<?php echo $photo->photo_id; ?>" data-ratio="<?php echo $photo->ratio; ?>">
+			" data-id="<?php echo $photo->photo_id; ?>" data-ratio="<?php echo $photo->ratio; ?>" data-fade-in="true">
 
 			<?php if ($admin != null) { ?>
 				<div class="table">
@@ -24,6 +23,8 @@
 		<?php }; ?>
 	</div>
 <?php }; ?>
+
+<div class="nav-spacer"></div>
 
 
 <div class="nav-bar<?php if ($admin != null) echo ' admin'; ?>">

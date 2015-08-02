@@ -19,12 +19,16 @@ html, body {
   position: relative;
   width: auto;
   margin: auto;
-  padding: 0 0 50px;
+  padding: 0;
   height: 100%;
   box-sizing: border-box;
   text-align: left; }
   .wrapper.photo-screen {
     overflow: hidden; }
+
+.best-fit {
+  background: url("../../assets/img/spinner.gif") center center no-repeat;
+  background-size: 32px; }
 
 .row {
   display: block;
@@ -38,12 +42,8 @@ html, body {
     width: 200px;
     height: 100%;
     float: left;
-    background: url("") center center no-repeat;
-    background-size: cover;
     box-sizing: border-box;
-    border: 1px solid #fcf9e8;
-    opacity: 0;
-    visibility: hidden; }
+    border: 1px solid #fcf9e8; }
     .row .photo .table {
       display: table;
       position: relative;
@@ -154,18 +154,12 @@ body.admin .admin-bar {
   left: 0;
   width: 100%;
   height: 100%;
-  margin: auto;
-  opacity: 0;
-  visibility: hidden;
-  background: url("") center center no-repeat;
-  background-size: contain; }
+  margin: auto; }
   .photo-solo.prev {
     left: -100%;
-    opacity: 1;
-    visibility: visible; }
+    opacity: 1; }
   .photo-solo.next {
     left: 100%;
-    opacity: 1;
-    visibility: visible; }
+    opacity: 1; }
 
 /*# sourceMappingURL=main.css.map */

@@ -22,6 +22,8 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 			this.onResizeBound = this.onResize.bind(this);
 			$(window).on("resize", this.onResizeBound);
 			$(window).resize();
+
+			$(window).on("scroll", this.onScroll.bind(this));
 		}
 
 		p.onResize = function(e)
@@ -30,6 +32,11 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 			$(".best-fit").each(this.checkImageSize.bind(this));
 
 			if (this.adminManager != null) this.adminManager.onResize(e);
+		}
+
+		p.onScroll = function(e)
+		{
+			$(".best-fit").each(this.checkImageSize.bind(this));
 		}
 
 		p.setRowHeight = function(i, domEl)
@@ -45,7 +52,13 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 
 		p.checkImageSize = function(i, domEl)
 		{
-			this.imageManager.checkImageSize($(domEl));
+			$domEl = $(domEl);
+
+			// allow for nav bar on solo photos
+			if ($domEl.hasClass("photo-solo")) $domEl.height(window.innerHeight - 50);
+
+			// now load correct image
+			this.imageManager.checkImageSize($domEl);
 		}
 
 		// Return the base class constructor.

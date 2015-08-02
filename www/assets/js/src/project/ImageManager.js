@@ -12,48 +12,75 @@ define([],
 
 			p.checkImageSize = function($domEl, callback)
 			{
+				//console.log("checkImageSize:", $domEl.attr("data-id"));
 				callback = callback || null;
 
-				if ($domEl.attr("data-id") != "" && $domEl.attr("data-ratio") != "")
-				{
-					var w = $domEl.innerWidth()*window.devicePixelRatio;
-					var h = $domEl.innerHeight()*window.devicePixelRatio;
-					var size = this.sizeStages[0];
+				var scrollTop = $(window).scrollTop();
+				var top = $domEl.offset().top;
+				var bottom = $domEl.offset().top + $domEl.innerHeight();
 
-					for (var i=0; i<this.sizeStages.length; ++i)
+				var topInView = top >= scrollTop && top < scrollTop + window.innerHeight;
+				var bottomInView = bottom > scrollTop && bottom < scrollTop + window.innerHeight;
+
+				if (topInView || bottomInView)
+				{
+					if ($domEl.attr("data-id") != "" && $domEl.attr("data-ratio") != "")
 					{
-						if (parseFloat($domEl.attr("data-ratio")) <= 1)
+						var w = $domEl.innerWidth()*window.devicePixelRatio;
+						var h = $domEl.innerHeight()*window.devicePixelRatio;
+						var size = this.sizeStages[0];
+
+						for (var i=0; i<this.sizeStages.length; ++i)
 						{
-							if (w <= this.sizeStages[i])
+							if (parseFloat($domEl.attr("data-ratio")) <= 1)
 							{
-								size = this.sizeStages[i];
-								//console.log($domEl.attr("data-id") + ":", w, "x", h, "LANDSCAPE:", this.sizeStages[i]);
-								break;
+								if (w <= this.sizeStages[i])
+								{
+									size = this.sizeStages[i];
+									//console.log($domEl.attr("data-id") + ":", w, "x", h, "LANDSCAPE:", this.sizeStages[i]);
+									break;
+								}
+							}
+							else {
+								if (h <= this.sizeStages[i])
+								{
+									size = this.sizeStages[i];
+									//console.log($domEl.attr("data-id") + ":", w, "x", h, "PORTRAIT:", this.sizeStages[i]);
+									break;
+								}
 							}
 						}
-						else {
-							if (h <= this.sizeStages[i])
-							{
-								size = this.sizeStages[i];
-								//console.log($domEl.attr("data-id") + ":", w, "x", h, "PORTRAIT:", this.sizeStages[i]);
-								break;
-							}
+
+						imgUrl = window.data.baseUrl + "assets/img/photos/" + size + "/" + $domEl.attr("data-id") + ".jpg";
+
+						if ("url(" + imgUrl + ")" != $domEl.css("background-image"))
+						{
+							var img = new Image();
+							console.log("loading image:", imgUrl);
+
+							img.$domEl = $domEl;
+							img.callback = callback;
+							img.onload = this.showImage;
+							img.src = imgUrl;
+
+							img.doFadeIn = $domEl.attr("data-fade-in") == "true";
+							$domEl.attr("data-fade-in", "false");
 						}
 					}
-
-					var img = new Image();
-					imgUrl = window.data.baseUrl + "assets/img/photos/" + size + "/" + $domEl.attr("data-id") + ".jpg";
-					img.onload = this.showImage($domEl, imgUrl, callback);
-					img.src = imgUrl;
 				}
 			}
 
-			p.showImage = function($domEl, imgUrl, callback)
+			p.showImage = function()
 			{
-				$domEl.css("background-image", "url('" + imgUrl + "')");
-				TweenMax.to($domEl,.2 + Math.random() *.2, {autoAlpha:1, ease:Sine.easeIn});
+				var img = this;
 
-				if (callback != null) callback();
+				img.$domEl.css("background-image", "url('" + img.src + "')");
+				img.$domEl.css("background-size", img.$domEl.hasClass("photo-solo") ? "contain" : "cover");
+
+				if (img.doFadeIn == true) TweenMax.set(img.$domEl, {autoAlpha:0});
+				TweenMax.to(img.$domEl,.2 + Math.random() *.2, {autoAlpha:1, ease:Sine.easeIn});
+
+				if (img.callback != null) img.callback();
 			}
 
 			// Return the base class constructor.

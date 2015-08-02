@@ -11,13 +11,15 @@ a.album-button {
   height: 65%;
   text-decoration: none;
 
-  background: url("") center center no-repeat;
-  background-size: cover;
-
   opacity: 0;
   visibility: hidden;
 
   border-bottom: 1px solid $white;
+  box-sizing: border-box;
+
+  &:active, &:hover {
+    // border: 8px solid $white;
+  }
 
   .table {
     display: table;
@@ -71,6 +73,14 @@ a.button:hover, a.button:active {
 
 
 // NAV BAR
+
+.nav-spacer {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: $nav-bar-height;
+  opacity: 0;
+}
 
 .nav-bar {
   display: block;
@@ -202,7 +212,7 @@ a.button:hover, a.button:active {
   &.home-screen {
     .table .inner {
       width: 30%;
-      
+
       &:first-child {
         width: 80%;
       }
