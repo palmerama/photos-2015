@@ -37,7 +37,7 @@ define([],
 
 			p.findCorrectImageSize = function($domEl, w, h, callback)
 			{
-				console.log("findCorrectImageSize", $domEl, w, h, callback);
+				//console.log("findCorrectImageSize", $domEl, w, h, callback);
 
 				if (w > this.sizeStages[this.sizeStages.length-1] || h > this.sizeStages[this.sizeStages.length-1])
 				{
@@ -51,7 +51,7 @@ define([],
 							if (w <= this.sizeStages[i])
 							{
 								size = this.sizeStages[i];
-								console.log($domEl.attr("data-id") + ":", w, "x", h, "LANDSCAPE:", this.sizeStages[i]);
+								//console.log($domEl.attr("data-id") + ":", w, "x", h, "LANDSCAPE:", this.sizeStages[i]);
 								break;
 							}
 						}
@@ -59,7 +59,7 @@ define([],
 							if (h <= this.sizeStages[i])
 							{
 								size = this.sizeStages[i];
-								console.log($domEl.attr("data-id") + ":", w, "x", h, "PORTRAIT:", this.sizeStages[i]);
+								//console.log($domEl.attr("data-id") + ":", w, "x", h, "PORTRAIT:", this.sizeStages[i]);
 								break;
 							}
 						}
