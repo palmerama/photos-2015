@@ -10,10 +10,12 @@ define([],
 
 				// hammer on main image
 				this.hammertime = new Hammer($(".photos-harness")[0]); // middle one (main photo)
-				this.hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL, velocity:0.1 });
-				this.hammertime.on("swipeleft swiperight panstart panend panleft panright tap", this.handleHammer.bind(this));
+				this.hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL, velocity:0.1,  });
+				this.hammertime.get('pinch').set({ enable: true });
+				this.hammertime.on("swipeleft swiperight panstart panend panleft panright pinch pinchstart pinchend tap", this.handleHammer.bind(this));
 
 				// vars
+				this.pinchScale = 1;
 				this.tapPerc = .25;
 				this.spinnerUrl = window.data.baseUrl + "assets/img/spinner.gif";
 
@@ -39,6 +41,8 @@ define([],
 
 			p.loadPrevNext = function()
 			{
+				console.log("!!! loadPrevNext");
+
 				if (window.data.prev != null)
 				{
 					$(".photo-solo.prev").eq(0).attr("data-id", window.data.prev.id);
@@ -59,7 +63,8 @@ define([],
 				// disable browser scrolling
 				e.preventDefault();
 
-				//console.log(e.type);
+				var xTarget = null;
+				// console.log(e.type);
 
 				switch(e.type)
 				{
@@ -76,6 +81,29 @@ define([],
 							xTarget = -window.innerWidth;
 							nextId = $(".photo-solo.next").attr("data-id");
 						}
+
+						break;
+
+					case 'pinchstart':
+						this.pinchScaleStart = this.pinchScale;
+						break;
+
+					case 'pinch':
+						console.log(e.scale);
+						this.pinchScale = Math.max(1, this.pinchScaleStart*e.scale);
+						TweenMax.set(".photo-solo.middle", { scale: this.pinchScale });
+						break;
+
+					case 'pinchend':
+
+						console.log("PINCH END!");
+						var $photoSolo = $(".photo-solo.middle");
+
+						$(this).trigger("check_pinched_image_size", [
+							$photoSolo,
+							$photoSolo.innerWidth()*this.pinchScale*window.devicePixelRatio,
+							$photoSolo.innerHeight()*this.pinchScale*window.devicePixelRatio
+						]);
 
 						break;
 
@@ -124,20 +152,11 @@ define([],
 
 					case 'panright':
 					case 'panleft':
-						if (this.xStart != null) TweenMax.set(".photos-harness", { css:{top:0, left:parseInt(this.xStart) + e.deltaX} });
+						if (this.xStart != null) TweenMax.set(".photos-harness", {
+							css:{top:0, left:parseInt(this.xStart) + e.deltaX}
+						});
 						break;
 				}
-
-				/*
-				var direction =
-
-				var allowNext = (
-					xTarget != null
-					&&
-					&& window.data.prev != null
-					&& $(".photo-solo.middle").eq(0).attr("data-id"
-				);
-				*/
 
 				if (xTarget != null)
 				{
@@ -172,6 +191,7 @@ define([],
 				if (data.previous) window.data.prev = {id: data.previous.photo_id, ratio: data.previous.ratio};
 				if (data.next) window.data.next = {id: data.next.photo_id, ratio: data.next.ratio};
 
+				this.pinchScale = 1;
 				this.loadMainPhoto();
 
 				$(".nav-bar .album .position").eq(1).text("(" + (parseInt(data.photo.position)+1) + "/" + data.count + ")");

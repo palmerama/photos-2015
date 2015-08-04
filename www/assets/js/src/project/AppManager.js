@@ -9,7 +9,10 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 
 			if (window.data.admin == true) this.adminManager = new AdminManager();
 			else if (window.data.album == true) this.albumManager = new AlbumManager();
-			else if (window.data.photo == true) this.photoManager = new PhotoManager(this.imageManager);
+			else if (window.data.photo == true) {
+				this.photoManager = new PhotoManager(this.imageManager);
+				$(this.photoManager).on("check_pinched_image_size", this.checkPinchedImageSize.bind(this));
+			}
 
 			this.initResize();
 		}
@@ -59,6 +62,12 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 
 			// now load correct image
 			this.imageManager.checkImageSize($domEl);
+		}
+
+		p.checkPinchedImageSize = function(e, $domEl, w, h)
+		{
+			console.log("checkPinchedImageSize");
+			this.imageManager.findCorrectImageSize($domEl, w, h);
 		}
 
 		// Return the base class constructor.
