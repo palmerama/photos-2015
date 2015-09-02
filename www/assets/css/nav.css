@@ -89,6 +89,9 @@ a.button:hover, a.button:active {
           min-width: 54px; } }
       .nav-bar .table .inner.middle {
         width: 70%; }
+        .nav-bar .table .inner.middle .album-title {
+          text-decoration: none;
+          color: inherit; }
       .nav-bar .table .inner .title {
         display: block;
         position: relative;

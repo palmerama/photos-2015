@@ -1,7 +1,7 @@
 
 <script>
 	window.data.photo = true;
-	window.data.main = {id: <?php echo $photo->id; ?>, ratio: <?php echo $photo->ratio; ?>};
+	window.data.main = {id: <?php echo $photo->id; ?>, ratio: <?php echo $photo->ratio; ?>, position: <?php echo $photo->position; ?>, count:<?php echo $count; ?> };
 
 	<?php if (isset($previous)) { ?>
 	window.data.prev = {id: <?php echo $previous->id; ?>, ratio: <?php echo $previous->ratio; ?>};
@@ -15,7 +15,7 @@
 
 <div class="photos-harness">
 	<div class="photo-solo best-fit prev" data-id="" data-ratio=""></div>
-	<div class="photo-solo best-fit middle" data-id="" data-ratio=""></div>
+	<div class="photo-solo best-fit middle" data-id="" data-ratio="" data-fade-in="true"></div>
 	<div class="photo-solo best-fit next" data-id="" data-ratio=""></div>
 </div>
 
@@ -28,7 +28,7 @@
 		<div class="inner middle">
 			<div class="album">
 				<span class="position" style="color:transparent;">(<?php echo $photo->position + 1; ?>/<?php echo $count; ?>)</span>
-				<?php echo $title; ?>
+				<a href="<?php echo base_url('album/'.$title); ?>" class="album-title"><?php echo $title; ?></a>
 				<span class="position">(<?php echo $photo->position + 1; ?>/<?php echo $count; ?>)</span>
 			</div>
 		</div>

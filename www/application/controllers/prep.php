@@ -91,4 +91,9 @@ class prep extends CI_Controller
 		$config = null;
 	}
 
+	public function createShareImages()
+	{
+
+	}
+
 }

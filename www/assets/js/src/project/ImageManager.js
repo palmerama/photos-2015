@@ -75,12 +75,13 @@ define([],
 			p.loadImage = function($domEl, imgUrl, callback)
 			{
 				var img = new Image();
-				console.log("loading image:", imgUrl);
+				// console.log("loading image:", imgUrl);
 
 				img.$domEl = $domEl;
 				img.callback = callback;
 				img.onload = this.showImage;
 				img.src = imgUrl;
+				img.id = $domEl.attr("data-id");
 
 				img.doFadeIn = $domEl.attr("data-fade-in") == "true";
 				$domEl.attr("data-fade-in", "false");
@@ -90,13 +91,26 @@ define([],
 			{
 				var img = this;
 
-				img.$domEl.css("background-image", "url('" + img.src + "')");
-				img.$domEl.css("background-size", img.$domEl.hasClass("photo-solo") ? "contain" : "cover");
+				if (img.$domEl.attr("data-id") == img.id)
+				{
+					img.$domEl.css("background-image", "url('" + img.src + "')");
+					img.$domEl.css("background-size", img.$domEl.hasClass("photo-solo") ? "contain" : "cover");
 
-				if (img.doFadeIn == true) TweenMax.set(img.$domEl, {autoAlpha:0});
-				TweenMax.to(img.$domEl,.2 + Math.random() *.2, {autoAlpha:1, ease:Sine.easeIn});
+					var params = {autoAlpha:1, ease:Sine.easeIn};
+					if (img.doFadeIn == true)
+					{
+						TweenMax.set(img.$domEl, {
+							autoAlpha:0,
+							scale:img.$domEl.hasClass("photo-solo") ? .97 : 1
+						});
 
-				if (img.callback != null) img.callback();
+						params.scale = 1;
+					}
+					TweenMax.to(img.$domEl, img.$domEl.hasClass("photo-solo") ? .4 : .2, params);
+
+					if (img.callback != null) img.callback();
+				}
+				else console.log("image loaded but changed in page!");
 			}
 
 			// Return the base class constructor.

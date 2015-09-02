@@ -5,6 +5,10 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script>
+	$(".photo-solo").height( window.innerHeight - $(".nav-bar").innerHeight() );
+</script>
+
+<script>
 	window.appInit = "main";
 </script>
 
