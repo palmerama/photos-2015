@@ -20,6 +20,7 @@ define([],
 				this.tapPerc = .25;
 				this.spinnerUrl = window.data.baseUrl + "assets/img/spinner.gif";
 				this.$photoSolo = $(".photo-solo.middle");
+				this.allowTaps = true;
 
 				// load prev & next at start
 				this.loadMainPhoto();
@@ -30,6 +31,9 @@ define([],
 
 			p.loadMainPhoto = function()
 			{
+				$(".photo-solo.middle").eq(0).css("background-image", this.spinnerUrl);
+				$(".photo-solo.middle").eq(0).css("background-size", "32px");
+
 				$(".photo-solo.middle").eq(0).attr("data-id", window.data.main.id);
 				$(".photo-solo.middle").eq(0).attr("data-ratio", window.data.main.ratio);
 				this.imageManager.checkImageSize( $(".photo-solo.middle").eq(0), this.loadPrevNext.bind(this) );
@@ -72,22 +76,26 @@ define([],
 				{
 					case 'tap':
 
-						var tapWidth = window.innerWidth * this.tapPerc;
-
-						if (e.center.x < tapWidth && this.prevAvailable())
+						if (this.allowTaps == true)
 						{
-							xTarget = window.innerWidth;
-							nextId = $(".photo-solo.prev").attr("data-id");
-						}
-						else if (e.center.x > window.innerWidth-tapWidth && this.nextAvailable()) {
-							xTarget = -window.innerWidth;
-							nextId = $(".photo-solo.next").attr("data-id");
+							var tapWidth = window.innerWidth * this.tapPerc;
+
+							if (e.center.x < tapWidth && this.prevAvailable())
+							{
+								xTarget = window.innerWidth;
+								nextId = $(".photo-solo.prev").attr("data-id");
+							}
+							else if (e.center.x > window.innerWidth-tapWidth && this.nextAvailable()) {
+								xTarget = -window.innerWidth;
+								nextId = $(".photo-solo.next").attr("data-id");
+							}
 						}
 
 						break;
 
 					case 'pinchstart':
 						this.pinchScaleStart = this.pinchScale;
+						this.allowTaps = false;
 						break;
 
 					case 'pinch':
@@ -210,6 +218,8 @@ define([],
 					}
 
 					TweenMax.to(".photos-harness", .2, params);
+
+					this.allowTaps = false;
 				}
 			}
 
@@ -238,6 +248,7 @@ define([],
 			{
 				this.lastDelta = {x:0, y:0};
 				TweenMax.to(".photo-solo.middle", .3, {x:0, y:0, transformOrigin:"50% 50%", ease:Sine.easeIn});
+				this.allowTaps = true;
 			}
 
 			p.updatePhoto = function(id)
@@ -264,6 +275,8 @@ define([],
 
 				$(".nav-bar .album .position").text("(" + (parseInt(data.photo.position)+1) + "/" + data.count + ")");
 				TweenMax.set(".photos-harness", { x:0 }); //css:{left:"0px"} });
+
+				this.allowTaps = true;
 			}
 
 			// Return the base class constructor.
