@@ -19,6 +19,11 @@
 	<div class="photo-solo best-fit next" data-id="" data-ratio=""></div>
 </div>
 
+<div class="social">
+	<a href="javascript:;" class="share fb"></a>
+	<a href="javascript:;" class="share twitter"></a>
+</div>
+
 
 <div class="nav-bar">
 	<div class="table">

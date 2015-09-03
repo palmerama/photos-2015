@@ -71,6 +71,53 @@ a.button:hover, a.button:active {
 }
 
 
+// SOCIAL
+.social {
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  box-sizing: border-box;
+  padding: 11px 9px;
+  background-color: $white-trans;
+
+  @media screen and (max-width: $break-570) {
+    padding: 8px 6px;
+  }
+
+  .share {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background: url("") center center no-repeat;
+    background-size: contain;
+
+    @media screen and (max-width: $break-570) {
+      width: 21px;
+      height: 21px;
+    }
+
+    &.fb {
+      background-image: url("../img/social/fb.png");
+    }
+
+    &.twitter {
+      background-image: url("../img/social/twitter.png");
+      margin-top: 15px;
+
+      @media screen and (max-width: $break-570) {
+        margin-top: 12px;
+      }
+    }
+
+    &:hover, &:active {
+      opacity: .7;
+    }
+  }
+}
+
+
 
 // NAV BAR
 

@@ -46,6 +46,39 @@ a.button:hover, a.button:active {
   background-color: #000000;
   color: white; }
 
+.social {
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  box-sizing: border-box;
+  padding: 11px 9px;
+  background-color: rgba(252, 249, 232, 0.92); }
+  @media screen and (max-width: 570px) {
+    .social {
+      padding: 8px 6px; } }
+  .social .share {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background: url("") center center no-repeat;
+    background-size: contain; }
+    @media screen and (max-width: 570px) {
+      .social .share {
+        width: 21px;
+        height: 21px; } }
+    .social .share.fb {
+      background-image: url("../img/social/fb.png"); }
+    .social .share.twitter {
+      background-image: url("../img/social/twitter.png");
+      margin-top: 15px; }
+      @media screen and (max-width: 570px) {
+        .social .share.twitter {
+          margin-top: 12px; } }
+    .social .share:hover, .social .share:active {
+      opacity: .7; }
+
 .nav-spacer {
   display: block;
   position: relative;
