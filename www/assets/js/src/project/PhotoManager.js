@@ -43,6 +43,17 @@ define([],
 
 				$(".photo-solo.next").eq(0).css("background-image", this.spinnerUrl);
 				$(".photo-solo.next").eq(0).css("background-size", "32px");
+
+				this.resetSharing();
+			}
+
+			p.resetSharing = function()
+			{
+				this.twitterText = "Adam Palmer took a photo. I quite like it.";
+				this.shareUrl = window.data.baseUrl + "photo/" + window.data.albumTitle + "/" + window.data.main.id;
+
+				// FACEBOOK
+				$(".share.fb").attr("href", "https://www.facebook.com/sharer.php?u=" + encodeURIComponent(this.shareUrl) + "&app_id=824024137711328&display=popup");
 			}
 
 			p.loadPrevNext = function()

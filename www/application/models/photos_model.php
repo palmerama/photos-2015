@@ -85,6 +85,15 @@ class photos_model extends CI_Model
 		return $album[0]->id;
 	}
 
+	public function getAlbumCoverIdFromTitle($title)
+	{
+		// get album id
+		$q = $this->db->get_where('albums', array('title' => $title));
+		$album = $q->result();
+
+		return $album[0]->cover_id;
+	}
+
 	public function reOrderAlbum($title, $shuffle)
 	{
 		// get album id

@@ -19,11 +19,15 @@ class album extends CI_Controller
 	public function menu($title, $admin = null)
 	{
 		$album = $this->generateAlbum($title);
+		$cover_id = $this->photos_model->getAlbumCoverIdFromTitle($title);
 
 		$this->load->view('includes/header', array(
 				'admin' => $admin,
 				'unused' => $album['unused'],
-				'title' => $title
+				'title' => $title,
+				'og_title' => 'Adam Palmer : '.ucfirst($title).' album',
+				'og_url' => base_url('album/'.$title),
+				'og_image' => base_url('assets/img/photos/share/'.$cover_id.'.jpg')
 		));
 
 		$this->load->view('album', array(
@@ -43,7 +47,13 @@ class album extends CI_Controller
 	{
 		$details = $this->photoGetPrevNext($title, $photoId);
 
-		$this->load->view('includes/header', array('title' => $title, 'screen' => 'photo'));
+		$this->load->view('includes/header', array(
+				'title' => $title,
+				'screen' => 'photo',
+				'og_title' => 'Adam Palmer : '.ucfirst($title).' album ('.($details['photo']->position + 1).'/'.$details['album']['count'].')',
+				'og_url' => base_url('photo/'.$title.'/'.$photoId),
+				'og_image' => base_url('assets/img/photos/share/'.$photoId.'.jpg')
+		));
 
 		$this->load->view('photo', array(
 				'title' => $title,

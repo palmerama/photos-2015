@@ -20,8 +20,8 @@
 </div>
 
 <div class="social">
-	<a href="javascript:;" class="share fb"></a>
-	<a href="javascript:;" class="share twitter"></a>
+	<a href="javascript:;" target="_blank" class="share fb"></a>
+	<a href="javascript:;" target="_blank" class="share twitter"></a>
 </div>
 
 

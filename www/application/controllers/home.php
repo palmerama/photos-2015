@@ -12,7 +12,12 @@ class home extends CI_Controller
 	{
 		$albumsList = $this->photos_model->getAlbumsList();
 
-		$this->load->view('includes/header');
+		$this->load->view('includes/header', array(
+				'og_title' => 'Adam Palmer : Some Photos I Took',
+				'og_url' => base_url(),
+				'og_image' => base_url('assets/img/photos/share/default.jpg')
+		));
+
 		$this->load->view('home', array('albumsList' => $albumsList));
 		$this->load->view('includes/footer');
 	}
