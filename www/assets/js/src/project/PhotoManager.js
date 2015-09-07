@@ -19,6 +19,7 @@ define([],
 				this.lastDelta = {x:0, y:0};
 				this.tapPerc = .25;
 				this.spinnerUrl = window.data.baseUrl + "assets/img/spinner.gif";
+				this.spinnerSize = "64px";
 				this.$photoSolo = $(".photo-solo.middle");
 				this.allowTaps = true;
 
@@ -32,17 +33,17 @@ define([],
 			p.loadMainPhoto = function()
 			{
 				$(".photo-solo.middle").eq(0).css("background-image", this.spinnerUrl);
-				$(".photo-solo.middle").eq(0).css("background-size", "32px");
+				$(".photo-solo.middle").eq(0).css("background-size", this.spinnerSize);
 
 				$(".photo-solo.middle").eq(0).attr("data-id", window.data.main.id);
 				$(".photo-solo.middle").eq(0).attr("data-ratio", window.data.main.ratio);
 				this.imageManager.checkImageSize( $(".photo-solo.middle").eq(0), this.loadPrevNext.bind(this) );
 
 				$(".photo-solo.prev").eq(0).css("background-image", this.spinnerUrl);
-				$(".photo-solo.prev").eq(0).css("background-size", "32px");
+				$(".photo-solo.prev").eq(0).css("background-size", this.spinnerSize);
 
 				$(".photo-solo.next").eq(0).css("background-image", this.spinnerUrl);
-				$(".photo-solo.next").eq(0).css("background-size", "32px");
+				$(".photo-solo.next").eq(0).css("background-size", this.spinnerSize);
 
 				this.resetSharing();
 			}
