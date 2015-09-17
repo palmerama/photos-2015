@@ -49,3 +49,6 @@ $route['album/(:any)/admin'] = 'album/menu/$1/admin';
 
 // individual photo
 $route['photo/(:any)/(:num)'] = 'album/photo/$1/$2';
+
+// test share image
+$route['test_share/(:num)'] = 'album/testShareImage/$1';
