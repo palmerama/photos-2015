@@ -50,5 +50,8 @@ $route['album/(:any)/admin'] = 'album/menu/$1/admin';
 // individual photo
 $route['photo/(:any)/(:num)'] = 'album/photo/$1/$2';
 
+// individual photo image at size
+$route['get_photo/(:num)/(:num)/(:any)'] = 'photo_maker/getPhoto/$1/$2/$3';
+
 // test share image
 $route['test_share/(:num)'] = 'album/testShareImage/$1';

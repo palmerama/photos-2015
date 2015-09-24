@@ -39,6 +39,8 @@ define([],
 			{
 				//console.log("findCorrectImageSize", $domEl, w, h, callback);
 
+				var size, imgUrl;
+
 				if (w > this.sizeStages[this.sizeStages.length-1] || h > this.sizeStages[this.sizeStages.length-1])
 				{
 					size = this.sizeStages[this.sizeStages.length-1];
@@ -75,8 +77,6 @@ define([],
 			p.loadImage = function($domEl, imgUrl, callback)
 			{
 				var img = new Image();
-				// console.log("loading image:", imgUrl);
-
 				img.$domEl = $domEl;
 				img.callback = callback;
 				img.onload = this.showImage;

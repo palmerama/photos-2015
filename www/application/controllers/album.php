@@ -83,6 +83,7 @@ class album extends CI_Controller
 
 	public function getShareImage($photoId, $title, $position, $count)
 	{
+		ini_set('memory_limit', '512M');
 		$imgPath = "assets/img/photos/share/".$photoId.".jpg";
 
 		if (file_exists($imgPath)) unlink($imgPath);
