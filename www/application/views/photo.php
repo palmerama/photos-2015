@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<div class="inner">
-			<div class="name">by ADAM PALMER</div>
+			<a href="http://twitter.com/palmerama" class="name" target="_blank">by ADAM PALMER</a>
 		</div>
 	</div>
 </div>

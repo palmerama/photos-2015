@@ -13,6 +13,8 @@ class prep extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('photos_model');
+
+		if (ENVIRONMENT == "production") die();
 	}
 
 	public function createAlbumFromFolder($title)

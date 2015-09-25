@@ -257,6 +257,8 @@ a.button:hover, a.button:active {
         font-weight: 500;
         font-size: 80%;
         text-align: right;
+        text-decoration: none;
+        color: inherit;
 
         @media screen and (max-width: $break-768) {
           font-size: 60%;

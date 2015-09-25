@@ -50,11 +50,14 @@ define([],
 
 			p.resetSharing = function()
 			{
-				this.twitterText = "Adam Palmer took a photo. I quite like it.";
+				this.twitterText = "Here's a photo @palmerama took. I quite like it.";
 				this.shareUrl = window.data.baseUrl + "photo/" + window.data.albumTitle + "/" + window.data.main.id;
 
 				// FACEBOOK
 				$(".share.fb").attr("href", "https://www.facebook.com/sharer.php?u=" + encodeURIComponent(this.shareUrl) + "&app_id=824024137711328&display=popup");
+
+				// TWITTER
+				$(".share.twitter").attr("href", "https://twitter.com/intent/tweet?&url=" + this.shareUrl + "&text=" + encodeURIComponent(this.twitterText));
 			}
 
 			p.loadPrevNext = function()

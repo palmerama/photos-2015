@@ -180,7 +180,9 @@ a.button:hover, a.button:active {
         vertical-align: top;
         font-weight: 500;
         font-size: 80%;
-        text-align: right; }
+        text-align: right;
+        text-decoration: none;
+        color: inherit; }
         @media screen and (max-width: 768px) {
           .nav-bar .table .inner .name {
             font-size: 60%; } }

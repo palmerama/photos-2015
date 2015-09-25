@@ -23,6 +23,8 @@ class album extends CI_Controller
 		$album = $this->generateAlbum($title);
 		$shareImageUrl = $this->getAlbumShareImage($title);
 
+		if (ENVIRONMENT == "production" && $admin == "admin") die();
+
 		$this->load->view('includes/header', array(
 				'admin' => $admin,
 				'unused' => $album['unused'],
@@ -86,10 +88,12 @@ class album extends CI_Controller
 		$imgPath = "assets/img/photos/share/album/".$title.".jpg";
 		$photoId = $this->photos_model->getAlbumCoverIdFromTitle($title);
 
-		// if (file_exists($imgPath)) unlink($imgPath);
+		if (file_exists($imgPath)) unlink($imgPath);
 
 		if ( !file_exists($imgPath) )
 		{
+			ini_set('memory_limit', '512M');
+
 			$font = "fonts/clarendon_wide_bold.otf";
 			$img = imagecreatetruecolor(1200, 630);
 

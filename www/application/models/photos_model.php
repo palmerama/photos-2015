@@ -33,6 +33,7 @@ class photos_model extends CI_Model
 
 		$q = $this->db->get_where('albums', array('active' => 1));
 		$albums = $q->result();
+		shuffle($albums);
 
 		foreach ($albums as $album)
 		{
