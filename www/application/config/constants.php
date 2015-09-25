@@ -42,7 +42,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
 // PROJECT SPECIFIC GLOBALS
-define("SITE_TITLE", "Intel Brain Builder 2");
+define("SITE_TITLE", "Adam Palmer");
 
 define("COMPETITION_LINK", "http://www.argos.co.uk/intelcomp");
 define("PERSONALITY_TEST_PATH", "personality");

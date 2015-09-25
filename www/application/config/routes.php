@@ -55,3 +55,6 @@ $route['get_photo/(:num)/(:num)/(:any)'] = 'photo_maker/getPhoto/$1/$2/$3';
 
 // test share image
 $route['test_share/(:num)'] = 'album/testShareImage/$1';
+
+// test share image
+$route['test_album_share/(:any)'] = 'album/testAlbumShareImage/$1';

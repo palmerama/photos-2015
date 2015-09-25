@@ -21,8 +21,10 @@
 	<meta property="og:image" content="<?php echo $og_image;?>" />
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
-	<meta property="og:site_name" content="Adam Palmer: Some Photos I Took" />
-	<meta property="og:description" content="I took some photos. I developed them. I made a website and put them on the internet. What do you want from me?" />
+	<meta property="og:site_name" content="Some Photos I Took, by Adam Palmer" />
+	<meta property="og:description" content="I took some photographs. Here are those photographs." />
+
+	<meta name="twitter:card" content="summary_large_image">
 
 	<script>
 		window.data = {

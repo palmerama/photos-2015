@@ -9,6 +9,9 @@ a.album-button {
   visibility: hidden;
   border-bottom: 1px solid #fcf9e8;
   box-sizing: border-box; }
+  @media screen and (max-width: 570px) {
+    a.album-button {
+      height: 60%; } }
   a.album-button .table {
     display: table;
     position: relative;

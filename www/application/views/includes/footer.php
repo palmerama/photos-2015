@@ -25,9 +25,13 @@ else :
 	 * PRODUCTION JS
 	 */
 	?>
+		<!--
 	<script data-main="<?php echo base_url('assets/js/build.min.js?v='.SCRIPT_VERSION);?>" src="<?php echo base_url('assets/js/require.js?v='.SCRIPT_VERSION);?>">
 		// 'assets/js/build.min.js?v'.SCRIPT_VERSION
 	</script>
+	-->
+
+	<script data-main="<?php echo base_url('assets/js/src/init.js?v='.SCRIPT_VERSION);?>" src="<?php echo base_url('assets/js/require.js?v='.SCRIPT_VERSION);?>"></script>
 
 <?php
 endif;

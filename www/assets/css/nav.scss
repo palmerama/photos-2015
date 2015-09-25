@@ -17,6 +17,10 @@ a.album-button {
   border-bottom: 1px solid $white;
   box-sizing: border-box;
 
+  @media screen and (max-width: $break-570) {
+    height: 60%;
+  }
+
   &:active, &:hover {
     // border: 8px solid $white;
   }

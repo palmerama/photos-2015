@@ -22,7 +22,7 @@ define([],
 				var topInView = top >= scrollTop && top < scrollTop + window.innerHeight;
 				var bottomInView = bottom > scrollTop && bottom < scrollTop + window.innerHeight;
 
-				if (topInView || bottomInView)
+				if (topInView || bottomInView || window.data.album == true)
 				{
 					if ($domEl.attr("data-id") != "" && $domEl.attr("data-ratio") != "")
 					{

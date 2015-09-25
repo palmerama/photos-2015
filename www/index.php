@@ -37,7 +37,8 @@ if (defined('ENVIRONMENT'))
 		break;
 
 		case 'production':
-			error_reporting(0);
+			//error_reporting(0);
+			error_reporting(E_ALL | E_STRICT);
 
 			// Redirect www. to tld
 			if(strstr($_SERVER['HTTP_HOST'],'www.'))

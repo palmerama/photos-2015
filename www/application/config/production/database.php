@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '10.168.1.45';
-$db['default']['username'] = 'smartenu_quiz';
-$db['default']['password'] = '$mArt3nup';
-$db['default']['database'] = 'smartenu_quiz';
+$db['default']['hostname'] = '10.169.0.45';
+$db['default']['username'] = 'palmeram_admin';
+$db['default']['password'] = 'N4qnmrEhsC4JANV';
+$db['default']['database'] = 'palmeram_photos';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

@@ -15,7 +15,7 @@
 |
 */
 // $config['base_url']	= 'http://wehaverhythm.com/clients/topspin/intel-brain-circuits/';
-$config['base_url']	= 'http://smartenup.me/';
+$config['base_url']	= 'http://palmerama.tv/';
 
 /*
 |--------------------------------------------------------------------------

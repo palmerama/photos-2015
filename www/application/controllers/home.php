@@ -15,7 +15,7 @@ class home extends CI_Controller
 		$this->load->view('includes/header', array(
 				'og_title' => 'Adam Palmer : Some Photos I Took',
 				'og_url' => base_url(),
-				'og_image' => base_url('assets/img/photos/share/default.jpg')
+				'og_image' => base_url('assets/img/photos/share/home/share1.jpg')
 		));
 
 		$this->load->view('home', array('albumsList' => $albumsList));
