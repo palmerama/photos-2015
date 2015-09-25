@@ -14,6 +14,8 @@ define([],
 
 			p.onPhotoClicked = function(e)
 			{
+				TweenMax.set(e.currentTarget, {alpha:.3, ease:Sine.easeIn});
+
 				// store scroll position
 				sessionStorage["ap_" + window.data.albumTitle] = $(window).scrollTop();
 
