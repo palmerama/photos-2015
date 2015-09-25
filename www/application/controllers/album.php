@@ -159,7 +159,7 @@ class album extends CI_Controller
 	{
 		$imgPath = "assets/img/photos/share/".$photoId.".jpg";
 
-		// if (file_exists($imgPath)) unlink($imgPath);
+		if (file_exists($imgPath)) unlink($imgPath);
 
 		if ( !file_exists($imgPath) )
 		{
@@ -218,32 +218,11 @@ class album extends CI_Controller
 		return base_url($imgPath);
 	}
 
-	private function drawImageTransparent($srcImage, $destImage, $color)
-	{
-		for ($x_offset = 0;$x_offset < imagesx($srcImage);$x_offset++)
-		{
-			for ($y_offset = 0;$y_offset < imagesy($srcImage);$y_offset++)
-			{
-				$visibility = (imagecolorat($srcImage,$x_offset,$y_offset) & 0xFF) / 255;
-				if ($visibility > 0)
-					imagesetpixel($destImage,$x_offset,$y_offset,imagecolorallocatealpha($destImage,($color >> 16) & 0xFF,($color >> 8) & 0xFF,$color & 0xFF,(1 - $visibility) * 127));
-			}
-		}
-	}
-
-	private function blurImage($image, $passes)
-	{
-		for ($i=0; $i<$passes; ++$i)
-		{
-			imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
-		}
-	}
-
 	private function drawShareText($img, $top, $textColour, $font, $title, $bounds, $position, $count)
 	{
 		write_crisp_text($img, 42, 73, $top, 0, $textColour, $font, strtoupper($title));
 		write_crisp_text($img, 24, 100 + $bounds[4], $top+19, 0, $textColour, $font, "(".$position."/".$count.")");
-		write_crisp_text($img, 21, 75, $top+68, 0, $textColour, $font, "by Adam Palmer");
+		write_crisp_text($img, 21, 75, $top+68, 0, $textColour, $font, "A photograph by Adam Palmer");
 	}
 
 	private function drawAlbumShareText($img, $top, $textColour, $font, $title, $bounds)
@@ -331,8 +310,26 @@ class album extends CI_Controller
 		);
 	}
 
-	public function getPositionInPhotoList()
+	/*
+	private function drawImageTransparent($srcImage, $destImage, $color)
 	{
-		// hmmm
+		for ($x_offset = 0;$x_offset < imagesx($srcImage);$x_offset++)
+		{
+			for ($y_offset = 0;$y_offset < imagesy($srcImage);$y_offset++)
+			{
+				$visibility = (imagecolorat($srcImage,$x_offset,$y_offset) & 0xFF) / 255;
+				if ($visibility > 0)
+					imagesetpixel($destImage,$x_offset,$y_offset,imagecolorallocatealpha($destImage,($color >> 16) & 0xFF,($color >> 8) & 0xFF,$color & 0xFF,(1 - $visibility) * 127));
+			}
+		}
 	}
+
+	private function blurImage($image, $passes)
+	{
+		for ($i=0; $i<$passes; ++$i)
+		{
+			imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
+		}
+	}
+	*/
 }
