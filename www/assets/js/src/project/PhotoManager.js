@@ -22,6 +22,7 @@ define([],
 				this.spinnerSize = "64px";
 				this.$photoSolo = $(".photo-solo.middle");
 				this.allowTaps = true;
+				this.transformPos = {x:0, y:0};
 
 				// load prev & next at start
 				this.loadMainPhoto();
@@ -109,34 +110,30 @@ define([],
 						break;
 
 					case 'pinchstart':
+
+						console.log("pinchstart:", e);
+						this.setTransformOrigin(e.center);
+						this.setPosition(-this.transformPos.x*this.pinchScale, -this.transformPos.y*this.pinchScale);
+
 						this.pinchScaleStart = this.pinchScale;
 						this.allowTaps = false;
+						break;
+
+					case 'panmove':
+						if (this.pinchScale > 1) // move around when zoomed
+						{
+							console.log("panmove:", e);
+							TweenMax.set(".photo-solo.middle", { x:this.lastDelta.x + e.deltaX, y:this.lastDelta.y + e.deltaY });
+						}
 						break;
 
 					case 'pinch':
 						var maxScale = 4;
 						this.pinchScale = Math.max(1, Math.min(this.pinchScaleStart*e.scale, maxScale));
 
-						var transformOrigin = {
-							x: e.center.x / this.$photoSolo.width(),
-							y: e.center.y / this.$photoSolo.height()
-						};
+						TweenMax.set(".photo-solo.middle", { scale: this.pinchScale });
 
-						var params = { scale: this.pinchScale, transformOrigin: "50% 50%" };
-
-						if (this.pinchScale > 1)
-						{
-							params.x = this.lastDelta.x + e.deltaX;
-							params.y = this.lastDelta.y + e.deltaY;
-
-							//transformOrigin.x *= this.pinchScale;
-							//transformOrigin.y *= this.pinchScale;
-						}
-
-						params.transformOrigin = parseFloat(transformOrigin.x*100) + "% " + parseFloat(transformOrigin.y*100) + "%";
-						console.log(params.transformOrigin);
-
-						TweenMax.set(".photo-solo.middle", params);
+						if (this.pinchScale > 1) this.setPosition(this.lastDelta.x + e.deltaX, this.lastDelta.y + e.deltaY);
 
 						break;
 
@@ -212,14 +209,6 @@ define([],
 					case 'panleft':
 						if (this.nextAvailable()) this.setPan(e.deltaX);
 						break;
-
-					case 'panmove':
-						if (this.pinchScale > 1) // move around when zoomed
-						{
-							console.log("panmove:", e);
-							TweenMax.set(".photo-solo.middle", { x:this.lastDelta.x + e.deltaX, y:this.lastDelta.y + e.deltaY });
-						}
-						break;
 				}
 
 				if (xTarget != null && this.pinchScale == 1)
@@ -236,6 +225,19 @@ define([],
 
 					this.allowTaps = false;
 				}
+			}
+
+			p.setTransformOrigin = function(x, y)
+			{
+				this.transformOrigin = { x:x, y:x };
+				console.log("setting transformOrigin:", this.transformOrigin);
+				this.applyTransformOrigin();
+			}
+
+			p.applyTransformOrigin = function()
+			{
+				console.log("applying transformOrigin:", this.transformOrigin);
+				TweenMax.set(".photo-solo.middle", {transformOrigin: this.transformOrigin.x + "px " + this.transformOrigin.y + "px"});
 			}
 
 			p.setPan = function(deltaX)
@@ -261,9 +263,20 @@ define([],
 
 			p.resetTransform = function()
 			{
+				this.transformOrigin = null;
 				this.lastDelta = {x:0, y:0};
-				TweenMax.to(".photo-solo.middle", .3, {x:0, y:0, transformOrigin:"50% 50%", ease:Sine.easeIn});
+				TweenMax.to(".photo-solo.middle", .3, {x:0, y:0, transformOrigin:"50% 50%", ease:Sine.easeIn,
+					onComplete: this.setPosition.bind(this),
+					onCompleteParams: [0, 0]
+				});
 				this.allowTaps = true;
+			}
+
+			p.setPosition = function(x, y)
+			{
+				console.log("setting position:", x, y);
+				this.transformPos = {x:x, y:y};
+				TweenMax.set(".photo-solo.middle", {x:this.transformPos.x, y:this.transformPos.y});
 			}
 
 			p.updatePhoto = function(id)
