@@ -24,7 +24,7 @@
     <favorites_list name="repo3" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7537906">
+    <splitter split-orientation="horizontal" split-proportion="0.79205775">
       <split-first>
         <leaf>
           <file leaf-file-name="AppManager.js" pinned="false" current-in-tab="false">
@@ -37,11 +37,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="album.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/www/application/controllers/album.php">
+          <file leaf-file-name="ImageManager.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/ImageManager.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-4.576923" vertical-offset="187" max-vertical-offset="6750">
-                  <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2892">
+                  <caret line="96" column="111" selection-start-line="96" selection-start-column="111" selection-end-line="96" selection-end-column="111" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AlbumManager.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/AlbumManager.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1243">
+                  <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
                   <folding />
                 </state>
               </provider>
@@ -50,8 +60,18 @@
           <file leaf-file-name="PhotoManager.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/PhotoManager.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33444077" vertical-offset="633" max-vertical-offset="6020">
-                  <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.37214613" vertical-offset="1731" max-vertical-offset="6214">
+                  <caret line="118" column="47" selection-start-line="118" selection-start-column="47" selection-end-line="118" selection-end-column="47" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="album.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/application/controllers/album.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-4.5961537" vertical-offset="2498" max-vertical-offset="6631">
+                  <caret line="161" column="52" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
                   <folding />
                 </state>
               </provider>
@@ -91,20 +111,20 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/www/assets/css/main.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-11.56" vertical-offset="442" max-vertical-offset="5043">
-                  <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+                <state vertical-scroll-proportion="0.40660593" vertical-offset="867" max-vertical-offset="5468">
+                  <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="nav.scss" pinned="false" current-in-tab="true">
+          <file leaf-file-name="nav.scss" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/www/assets/css/nav.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5323149" vertical-offset="4324" max-vertical-offset="6223">
+                <state vertical-scroll-proportion="-8.384615" vertical-offset="3984" max-vertical-offset="5849">
                   <caret line="260" column="23" selection-start-line="260" selection-start-column="23" selection-end-line="260" selection-end-column="23" />
                   <folding />
                 </state>
@@ -157,13 +177,11 @@
         <option value="$PROJECT_DIR$/www/application/views/includes/admin_bar.php" />
         <option value="$PROJECT_DIR$/www/assets/js/src/project/StorageManager.js" />
         <option value="$PROJECT_DIR$/www/assets/js/src/project/AdminManager.js" />
-        <option value="$PROJECT_DIR$/www/assets/js/src/project/AlbumManager.js" />
         <option value="$PROJECT_DIR$/www/application/controllers/data.php" />
         <option value="$PROJECT_DIR$/www/assets/css/_breaks.scss" />
         <option value="$PROJECT_DIR$/www/application/config/development/config.php" />
         <option value="$PROJECT_DIR$/www/assets/css/_vars.scss" />
         <option value="$PROJECT_DIR$/www/assets/js/src/project/AppManager.js" />
-        <option value="$PROJECT_DIR$/www/assets/css/main.scss" />
         <option value="$PROJECT_DIR$/www/application/controllers/photos.php" />
         <option value="$PROJECT_DIR$/www/application/views/photo_maker.php" />
         <option value="$PROJECT_DIR$/www/application/controllers/photo_maker.php" />
@@ -180,11 +198,13 @@
         <option value="$PROJECT_DIR$/www/application/controllers/prep.php" />
         <option value="$PROJECT_DIR$/www/application/models/photos_model.php" />
         <option value="$PROJECT_DIR$/www/application/views/includes/ga.php" />
-        <option value="$PROJECT_DIR$/www/application/controllers/album.php" />
         <option value="$PROJECT_DIR$/www/application/views/home.php" />
         <option value="$PROJECT_DIR$/www/application/views/album.php" />
         <option value="$PROJECT_DIR$/www/application/views/photo.php" />
         <option value="$PROJECT_DIR$/www/assets/css/nav.scss" />
+        <option value="$PROJECT_DIR$/www/application/controllers/album.php" />
+        <option value="$PROJECT_DIR$/www/assets/css/main.scss" />
+        <option value="$PROJECT_DIR$/www/assets/js/src/project/AlbumManager.js" />
         <option value="$PROJECT_DIR$/www/assets/js/src/project/PhotoManager.js" />
       </list>
     </option>
@@ -195,7 +215,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="1" />
-    <option name="y" value="26" />
+    <option name="y" value="29" />
     <option name="width" value="1680" />
     <option name="height" value="1023" />
   </component>
@@ -649,7 +669,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="26" width="1680" height="1023" extended-state="0" />
+    <frame x="1" y="29" width="1680" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -664,7 +684,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15445666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690248" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265306" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -718,14 +738,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/assets/css/nav.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1326" max-vertical-offset="1819">
-          <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/application/config/development/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="6188">
@@ -891,13 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/AlbumManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="1481">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/application/config/development/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.309795" vertical-offset="0" max-vertical-offset="7032">
@@ -909,14 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="255">
           <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/assets/css/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.56" vertical-offset="442" max-vertical-offset="5043">
-          <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -975,22 +972,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5774487" vertical-offset="54" max-vertical-offset="1541">
           <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/ImageManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6666665" vertical-offset="0" max-vertical-offset="2984">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/AdminManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8888888" vertical-offset="0" max-vertical-offset="2984">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1061,16 +1042,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/assets/css/nav.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5323149" vertical-offset="4324" max-vertical-offset="6223">
+        <state vertical-scroll-proportion="-8.384615" vertical-offset="3984" max-vertical-offset="5849">
           <caret line="260" column="23" selection-start-line="260" selection-start-column="23" selection-end-line="260" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/application/controllers/album.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923" vertical-offset="187" max-vertical-offset="6597">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1099,10 +1072,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/application/controllers/album.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5961537" vertical-offset="2498" max-vertical-offset="6631">
+          <caret line="161" column="52" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/assets/js/src/utils/PressHoldButton.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2847571" vertical-offset="0" max-vertical-offset="1141">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/AdminManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="379" max-vertical-offset="2739">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/assets/css/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40660593" vertical-offset="867" max-vertical-offset="5468">
+          <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/AlbumManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1243">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/ImageManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2892">
+          <caret line="96" column="111" selection-start-line="96" selection-start-column="111" selection-end-line="96" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/assets/js/src/project/PhotoManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33444077" vertical-offset="633" max-vertical-offset="6020">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.37214613" vertical-offset="1731" max-vertical-offset="6214">
+          <caret line="118" column="47" selection-start-line="118" selection-start-column="47" selection-end-line="118" selection-end-column="47" />
           <folding />
         </state>
       </provider>
