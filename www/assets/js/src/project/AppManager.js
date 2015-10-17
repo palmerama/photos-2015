@@ -15,6 +15,7 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 				$(this.photoManager).on("check_pinched_image_size", this.checkPinchedImageSize.bind(this));
 			}
 
+			this.initOverlay();
 			this.initResize();
 		}
 
@@ -27,6 +28,7 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 			$(window).on("resize", this.onResizeBound);
 			$(window).resize();
 
+			// should this happen every frame on scrolling?
 			$(window).on("scroll", this.onScroll.bind(this));
 		}
 
@@ -69,6 +71,21 @@ define(["project/ImageManager", "project/AdminManager", "project/AlbumManager", 
 		{
 			console.log("checkPinchedImageSize");
 			this.imageManager.findCorrectImageSize($domEl, w, h);
+		}
+
+		p.initOverlay = function()
+		{
+			this.$overlay = $(".overlay");
+
+			$(".nav-bar .name").on("mousedown", function(e)
+			{
+				this.$overlay.css("display", "table");
+			}.bind(this));
+
+			this.$overlay.on("mousedown", function(e)
+			{
+				if ($(e.target).is("a") == false) this.$overlay.hide();
+			}.bind(this));
 		}
 
 		// Return the base class constructor.

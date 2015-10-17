@@ -261,3 +261,86 @@ body.admin {
   z-index: 10000;
 }
 
+
+// overlay
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.6);
+
+  .cell {
+    display: table-cell;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    height: 200px;
+
+    .inner {
+      display: block;
+      position: relative;
+      margin: auto;
+      width: 70%;
+      max-width: 550px;
+      min-width: 280px;
+      height: auto;
+
+      box-sizing: border-box;
+      padding: 3% 5% 4%;
+      border-radius: 10px;
+
+      text-align: left;
+      background: $white;
+      color: $black;
+
+      @media screen and (max-width: $break-570) {
+        padding: 6% 8% 7%;
+      }
+
+      .title {
+        font-size: 36px;
+        font-weight: 500;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: $break-570) {
+          font-size: 30px;
+        }
+      }
+
+      .body {
+        p {
+          font-family: "proxima-nova",sans-serif;
+          font-size: 17px;
+          line-height: 26px;
+          font-weight: 400;
+          margin-top: 10px;
+          letter-spacing: 0;
+
+          @media screen and (max-width: $break-570) {
+            font-size: 15px;
+            line-height: 22px;
+          }
+
+          a {
+            text-decoration: none;
+            color: #7F7B3F;
+            font-weight: bold;
+
+            &:hover, &:active {
+              opacity: .4;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

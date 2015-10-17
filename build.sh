@@ -1,5 +1,4 @@
 #!/bin/bash
-cd grunt
 echo ""
 echo ""
 echo ""
@@ -8,10 +7,11 @@ echo ""
 echo "********************"
 echo "Building..."
 echo "********************"
-grunt --gruntfile argos-grunt.js
-grunt --gruntfile intel-video-grunt.js
-grunt --gruntfile intel-personality-grunt.js
-cd ..
+r.js -o www/assets/js/app.build.js
+echo "********************"
+echo "Minifying & Concatenating..."
+echo "********************"
+remove-console-logs www/assets/js/build.min.js
 echo ""
 echo ""
 echo ""

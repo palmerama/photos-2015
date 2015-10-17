@@ -1,4 +1,6 @@
 
+
+
 <?php foreach($albumsList as $album) { ?>
 <a href="<?php echo base_url('album/'.$album['title']); ?>" class="album-button best-fit" style="" data-id="<?php echo $album['cover_id']; ?>" data-ratio="<?php echo $album['ratio']; ?>" data-fade-in="true">
 	<div class="table">
@@ -18,7 +20,7 @@
 			<div class="title">Some Photos I Took</div>
 		</div>
 		<div class="inner">
-			<a href="http://twitter.com/palmerama" class="name" target="_blank">by ADAM PALMER</a>
+			<a href="javascript:;" class="name" target="_blank">by ADAM PALMER</a>
 		</div>
 	</div>
 </div>

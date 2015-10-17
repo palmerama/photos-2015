@@ -36,7 +36,7 @@
 			<div class="album"><?php echo $title; ?></div>
 		</div>
 		<div class="inner">
-			<a href="http://twitter.com/palmerama" class="name" target="_blank">by ADAM PALMER</a>
+			<a href="javascript:;" class="name" target="_blank">by ADAM PALMER</a>
 		</div>
 	</div>
 </div>

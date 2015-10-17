@@ -246,6 +246,7 @@ a.button:hover, a.button:active {
 
         &:hover, &:active {
           background: $white;
+          opacity: .5;
         }
       }
 
@@ -262,6 +263,11 @@ a.button:hover, a.button:active {
 
         @media screen and (max-width: $break-768) {
           font-size: 60%;
+        }
+
+        &:hover, &:active {
+          background: $white;
+          opacity: .5;
         }
       }
     }

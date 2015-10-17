@@ -26,6 +26,7 @@ class album extends CI_Controller
 		if (ENVIRONMENT == "production" && $admin == "admin") die();
 
 		$this->load->view('includes/header', array(
+				'screen' => 'album',
 				'admin' => $admin,
 				'unused' => $album['unused'],
 				'title' => $title,

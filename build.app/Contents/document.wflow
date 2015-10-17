@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>409</string>
+	<string>409.2</string>
 	<key>AMApplicationVersion</key>
 	<string>2.5</string>
 	<key>AMDocumentVersion</key>
@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>tell application "Finder"	set myWin to window 1	set thePath to (quoted form of POSIX path of (target of myWin as alias))	tell application "Terminal"		activate		tell window 1			do script "cd " &amp; thePath &amp; "; sh build.sh"		end tell	end tellend tell</string>
+					<string>tell application "Finder"	set myWin to window 1	set thePath to (quoted form of POSIX path of (target of myWin as alias))	tell application "Terminal"		activate		tell window 1			do script "cd " &amp; thePath &amp; "; sh sync.sh..."		end tell	end tellend tell</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -105,7 +105,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>309.000000:316.000000</string>
+				<string>550.500000:316.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>

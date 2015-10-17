@@ -13,6 +13,7 @@ class home extends CI_Controller
 		$albumsList = $this->photos_model->getAlbumsList();
 
 		$this->load->view('includes/header', array(
+				'screen' => 'menu',
 				'og_title' => 'Adam Palmer : Some Photos I Took',
 				'og_url' => base_url(),
 				'og_image' => base_url('assets/img/photos/share/home/share1.jpg')

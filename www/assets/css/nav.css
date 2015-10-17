@@ -172,7 +172,8 @@ a.button:hover, a.button:active {
           .nav-bar .table .inner a.button {
             font-size: 60%; } }
         .nav-bar .table .inner a.button:hover, .nav-bar .table .inner a.button:active {
-          background: #fcf9e8; }
+          background: #fcf9e8;
+          opacity: .5; }
       .nav-bar .table .inner .name {
         display: block;
         position: relative;
@@ -186,6 +187,9 @@ a.button:hover, a.button:active {
         @media screen and (max-width: 768px) {
           .nav-bar .table .inner .name {
             font-size: 60%; } }
+        .nav-bar .table .inner .name:hover, .nav-bar .table .inner .name:active {
+          background: #fcf9e8;
+          opacity: .5; }
   .nav-bar.home-screen .table .inner {
     width: 30%; }
     .nav-bar.home-screen .table .inner:first-child {

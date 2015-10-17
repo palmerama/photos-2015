@@ -28,6 +28,7 @@
 
 	<script>
 		window.data = {
+			screen: "<?php echo $screen; ?>",
 			baseUrl: "<?php echo base_url(); ?>",
 			admin: <?php if (isset($admin)) echo 'true'; else echo 'false'; ?>
 			<?php if (isset($title)) { ?>, albumTitle: "<?php echo $title; ?>"<?php }; ?>
