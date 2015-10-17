@@ -6,8 +6,8 @@
 		<div class="inner">
 			<div class="title">Hello.</div>
 			<div class="body">
-				<p>I take photographs in my spare time. Actually, that's a lie. I only really bother on holiday. I should do it more. In the meantime, I've made this site to house those I've already taken.<p>
-				<p>In <a href="https://twitter.com/palmerama" target="_blank">real life</a>, I'm a co-founder of <a href="http://wehaverhythm.com" target="_blank">Rhythm</a> and immensely proud of all the fun interactive digital stuff we make. I bloody love it.</p>
+				<p>I take photographs in my spare time. Actually, I only really bother on holiday. I should do it more. I enjoy it. I've made this site to house those I've already taken.<p>
+				<p>In <a href="https://twitter.com/palmerama" target="_blank">real life</a>, I'm a co-founder of <a href="http://wehaverhythm.com" target="_blank">Rhythm</a>. We make fun interactive digital stuff.</p>
 			</div>
 		</div>
 	</div>
