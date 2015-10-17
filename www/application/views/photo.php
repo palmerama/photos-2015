@@ -13,9 +13,13 @@
 </script>
 <script src="<?php echo base_url('assets/js/vendor/hammer.min.js'); ?>"></script>
 
+<div class="marker-position"></div>
+
 <div class="photos-harness">
 	<div class="photo-solo best-fit prev" data-id="" data-ratio=""></div>
-	<div class="photo-solo best-fit middle" data-id="" data-ratio="" data-fade-in="true"></div>
+	<div class="photo-solo best-fit middle" data-id="" data-ratio="" data-fade-in="true">
+		<div class="marker-transform-origin"></div>
+	</div>
 	<div class="photo-solo best-fit next" data-id="" data-ratio=""></div>
 </div>
 

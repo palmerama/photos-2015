@@ -245,3 +245,19 @@ body.admin {
   //background: url("") center center no-repeat;
   //background-size: contain;
 }
+
+.marker-transform-origin, .marker-position {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1px;
+  height: 1px;
+  border: 1px solid red;
+}
+
+.marker-position {
+  border: 2px solid blue;
+  z-index: 10000;
+}
+

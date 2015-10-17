@@ -23,6 +23,11 @@ define([],
 				this.$photoSolo = $(".photo-solo.middle");
 				this.allowTaps = true;
 				this.transformPos = {x:0, y:0};
+				this.transformOrigin = {x:0, y:0};
+
+				// markers
+				this.$markerTransformOrigin = $(".marker-transform-origin");
+				this.$markerPosition = $(".marker-position");
 
 				// load prev & next at start
 				this.loadMainPhoto();
@@ -109,31 +114,48 @@ define([],
 
 						break;
 
+					case 'panmove':
+						if (this.pinchScale > 1) // move around when zoomed
+						{
+							console.log("panmove:", e);
+							this.setPosition(this.lastDelta.x + e.deltaX, this.lastDelta.y + e.deltaY);
+						}
+						break;
+
 					case 'pinchstart':
 
 						console.log("pinchstart:", e);
-						this.setTransformOrigin(e.center);
-						this.setPosition(-this.transformPos.x*this.pinchScale, -this.transformPos.y*this.pinchScale);
+
+						// find top left
+						console.log("=========> transformOrigin:", this.transformOrigin);
+						console.log("=========> transformPos:", this.transformPos);
+
+						var offset = this.$photoSolo.offset();
+						var topLeft = { x:offset.left, y:offset.top };
+						var reverseScale = 1/this.pinchScale;
+
+						console.log("=========> topLeft:", topLeft);
+
+						this.setTransformOrigin({x:(e.center.x-topLeft.x)*reverseScale, y:(e.center.y-topLeft.y)*reverseScale});
+						this.setPosition(e.center.x, e.center.y);
 
 						this.pinchScaleStart = this.pinchScale;
 						this.allowTaps = false;
 						break;
 
-					case 'panmove':
-						if (this.pinchScale > 1) // move around when zoomed
-						{
-							console.log("panmove:", e);
-							TweenMax.set(".photo-solo.middle", { x:this.lastDelta.x + e.deltaX, y:this.lastDelta.y + e.deltaY });
-						}
-						break;
-
 					case 'pinch':
+						console.log("pinch:", e);
 						var maxScale = 4;
 						this.pinchScale = Math.max(1, Math.min(this.pinchScaleStart*e.scale, maxScale));
 
 						TweenMax.set(".photo-solo.middle", { scale: this.pinchScale });
 
-						if (this.pinchScale > 1) this.setPosition(this.lastDelta.x + e.deltaX, this.lastDelta.y + e.deltaY);
+						//if (this.pinchScale > 1) this.setPosition(this.lastDelta.x + e.deltaX, this.lastDelta.y + e.deltaY);
+
+						if (this.pinchScale > 1) this.setPosition(
+								e.center.x - this.transformOrigin.x,
+								e.center.y - this.transformOrigin.y
+						);
 
 						break;
 
@@ -227,17 +249,29 @@ define([],
 				}
 			}
 
-			p.setTransformOrigin = function(x, y)
+			p.setPosition = function(x, y)
 			{
-				this.transformOrigin = { x:x, y:x };
+				console.log("setting position:", x, y);
+				this.transformPos = {x:x, y:y};
+
+				TweenMax.set(this.$markerPosition, {x:this.transformPos.x, y:this.transformPos.y});
+				TweenMax.set(".photo-solo.middle", {x:this.transformPos.x, y:this.transformPos.y});
+			}
+
+			p.setTransformOrigin = function(obj)
+			{
+				this.transformOrigin = obj;
 				console.log("setting transformOrigin:", this.transformOrigin);
+
+				TweenMax.set(this.$markerTransformOrigin, {x:this.transformOrigin.x, y:this.transformOrigin.y});
 				this.applyTransformOrigin();
 			}
 
 			p.applyTransformOrigin = function()
 			{
-				console.log("applying transformOrigin:", this.transformOrigin);
-				TweenMax.set(".photo-solo.middle", {transformOrigin: this.transformOrigin.x + "px " + this.transformOrigin.y + "px"});
+				var transformOrigin = this.transformOrigin.x + "px " + this.transformOrigin.y + "px";
+				console.log("applying transformOrigin:", transformOrigin);
+				TweenMax.set(".photo-solo.middle", {transformOrigin: transformOrigin});
 			}
 
 			p.setPan = function(deltaX)
@@ -263,20 +297,15 @@ define([],
 
 			p.resetTransform = function()
 			{
-				this.transformOrigin = null;
+				this.transformOrigin = {x:0, y:0};
 				this.lastDelta = {x:0, y:0};
+
 				TweenMax.to(".photo-solo.middle", .3, {x:0, y:0, transformOrigin:"50% 50%", ease:Sine.easeIn,
 					onComplete: this.setPosition.bind(this),
 					onCompleteParams: [0, 0]
 				});
-				this.allowTaps = true;
-			}
 
-			p.setPosition = function(x, y)
-			{
-				console.log("setting position:", x, y);
-				this.transformPos = {x:x, y:y};
-				TweenMax.set(".photo-solo.middle", {x:this.transformPos.x, y:this.transformPos.y});
+				this.allowTaps = true;
 			}
 
 			p.updatePhoto = function(id)
