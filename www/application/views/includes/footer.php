@@ -7,7 +7,7 @@
 			<div class="title">Hello.</div>
 			<div class="body">
 				<p>I take photographs in my spare time. Actually, I only really bother on holiday. I should do it more. I enjoy it. I've made this site to house those I've already taken.<p>
-				<p>In <a href="https://twitter.com/palmerama" target="_blank">real life</a>, I'm a co-founder of <a href="http://wehaverhythm.com" target="_blank">Rhythm</a>. We make fun interactive digital stuff.</p>
+				<p>In <a href="https://twitter.com/palmerama" target="_blank">real life</a>, I'm a co-founder of <a href="http://rhythm.digital" target="_blank">Rhythm</a>. We make fun interactive digital stuff.</p>
 			</div>
 		</div>
 	</div>
